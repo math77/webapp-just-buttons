@@ -13,8 +13,8 @@ export async function POST(request: NextRequest) {
   console.log(formData);
 
   const file = formData.get("file") as Blob | null;
-  const nftName = formData.get("nftName") as string | null;
-  const nftDescription = formData.get("nftDescription") as string | null;
+  const nftName = formData.get("nftName") as string;
+  const nftDescription = formData.get("nftDescription") as string;
   
   if (!file) {
     return NextResponse.json(
