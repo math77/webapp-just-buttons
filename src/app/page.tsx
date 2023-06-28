@@ -106,7 +106,7 @@ export default function Home() {
         return;
       }
 
-      setSelectedImage(e.target.files[0]);
+      setSelectedImage(file);
     }
   };
 
@@ -152,8 +152,12 @@ export default function Home() {
       return;
     }
 
-    const formData = new FormData(formRef.current);
-    formData.append("file", selectedImage);
+    if (!selectedImage) {
+      return;
+    }
+
+    let formData = new FormData(formRef.current);
+    formData.append("file", selectedImage!);
 
     console.log("FORM DATA");
     console.log(formData);
