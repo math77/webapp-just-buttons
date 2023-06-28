@@ -179,6 +179,56 @@ export default function Home() {
     }
   };
 
+  const saveModalContent2 = async (event: React.FormEvent) => {
+    event.preventDefault();
+    /*
+    
+      WORKFLOW
+
+      Use realtime to block the button "someone is minting"
+      Get the data of NFT (uri, creator, buttonID)
+      Upload the new nft for IPFS nft.storage and get the new cid
+      Make the signature on the server with the data + my project wallet
+      Make a transaction to mint the nft for the current minter
+      If the transaction succed, save the data of new nft on supabase,
+      tag the old one with "minted" and unblock the button.
+
+
+    */
+
+    const data = { 
+      nftIPFSURI: "ipfs://uri-for-test/hi-world-baby-lololol",
+      nftCreatorAddress: "0x2f60c9cee6450a8090e17a79e3dd2615a1c419eb",
+      buttonId: 4
+    };
+
+    try {
+      const response = await fetch('/api/insert', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({ data }),
+      });
+
+      const responseData = await response.json();
+      console.log("RESPONSE");
+      console.log(responseData);
+      
+      if (response.ok) {
+        alert(responseData.message);
+      } else {
+        // Handle error cases
+        alert(response.status);
+        console.error('Error:', response.status);
+      }
+    } catch (error) {
+      alert('Error: ' +error);
+      console.error('Error:', error);
+    }
+  };
+
+
   const renderModal = () => {
     return (
       <Modal
@@ -196,7 +246,7 @@ export default function Home() {
         <p>Clicked Button ID: {clickedButtonId}</p>
 
 
-        <form ref={formRef} onSubmit={handleSubmit}>
+        <form ref={formRef} onSubmit={saveModalContent2}>
 
           <div>
             <label htmlFor="nftName" className="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Title</label>
