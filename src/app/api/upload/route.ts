@@ -19,7 +19,7 @@ export async function POST(request: NextRequest) {
   if (!file) {
     return NextResponse.json(
       { ok: false },
-      { data: null }
+      { data: null },
       { status: 400 }
     );
   }
@@ -43,7 +43,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { ok: true },
-      { data: cid }
+      { data: cid },
       { status: 200 }
     );
 
@@ -53,7 +53,7 @@ export async function POST(request: NextRequest) {
 
     return NextResponse.json(
       { ok: false },
-      { data: null }
+      { data: null },
       { status: 500 }
     );
 
