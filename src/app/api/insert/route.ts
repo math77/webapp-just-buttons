@@ -1,24 +1,21 @@
 import { NextRequest, NextResponse } from "next/server";
 
-/*
 import { createClient } from '@supabase/supabase-js';
 
 
 const supabaseUrl = process.env.SUPABASE_URL as string;
 const supabaseKey = process.env.SUPABASE_SERVICE_ROLE_KEY as string;
 const supabase = createClient(supabaseUrl, supabaseKey);
-*/
+
 
 export async function POST(request: NextRequest) {
 
   try {
 
-    const data = await request.json();
+    const { data } = await request.json();
 
     console.log("DATA");
-    console.log(data);
-
-    /*
+    console.log(data.nftIPFSURI);
 
     // Validate the data (perform your custom validation logic here)
     if (!data) {
@@ -49,7 +46,6 @@ export async function POST(request: NextRequest) {
         { status: 400 }
       );
     }
-    */
 
     return NextResponse.json(
       { ok: "Yup, saved! :D" },

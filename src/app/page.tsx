@@ -214,9 +214,10 @@ export default function Home() {
       const responseData = await response.json();
       console.log("RESPONSE");
       console.log(responseData);
+      console.log(response.ok);
       
       if (response.ok) {
-        alert(responseData.message);
+        alert(responseData.ok);
       } else {
         // Handle error cases
         alert(response.status);
