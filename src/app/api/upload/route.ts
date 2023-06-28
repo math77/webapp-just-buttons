@@ -18,8 +18,7 @@ export async function POST(request: NextRequest) {
   
   if (!file) {
     return NextResponse.json(
-      { ok: false },
-      { data: null },
+      { ok: "File not provided" },
       { status: 400 }
     );
   }
@@ -42,8 +41,7 @@ export async function POST(request: NextRequest) {
     const cid = metadata.url; //ipnft with ipfs://ipfnt/metadata.json
 
     return NextResponse.json(
-      { ok: true },
-      { data: cid },
+      { ok: `NFT uploaded ${cid}` },
       { status: 200 }
     );
 
@@ -52,8 +50,7 @@ export async function POST(request: NextRequest) {
     console.error(error);
 
     return NextResponse.json(
-      { ok: false },
-      { data: null },
+      { ok: "Internal server error" },
       { status: 500 }
     );
 
