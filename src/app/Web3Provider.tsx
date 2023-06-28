@@ -14,7 +14,7 @@ import { publicProvider } from "wagmi/providers/public";
 
 
 const ALCHEMY_ID = process.env.NEXT_PUBLIC_ALCHEMY_ID as string;
-const PROJECT_ID = process.env.NEXT_PUBLIC_PROJECT_ID as string;
+const PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID as string;
 
 const { chains, publicClient } = configureChains(
   [optimism, goerli],
