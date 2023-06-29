@@ -14,9 +14,6 @@ export async function POST(request: NextRequest) {
 
     const { data } = await request.json();
 
-    console.log("DATA");
-    console.log(data.nftIPFSURI);
-
     // Validate the data (perform your custom validation logic here)
     if (!data) {
       return NextResponse.json(

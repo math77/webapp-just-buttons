@@ -1,15 +1,17 @@
-'use client'
+"use client"
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useEffect, useRef } from "react";
 
-import Modal from 'react-modal';
+import Modal from "react-modal";
 import Image from "next/image";
+import EmojiPicker from "emoji-picker-react";
 
-import { useAccount } from 'wagmi'
 
-import Header from '@/components/Header'
+import { useAccount } from "wagmi"
 
-import { supabase, channel, readButtonData } from '@/database';
+import Header from "@/components/Header"
+
+import { supabase, channel, readButtonData } from "@/database";
 
 
 export default function Home() {
@@ -36,7 +38,7 @@ export default function Home() {
 
   const { address, isConnected } = useAccount();
 
-
+  /* REALTIME CHECK EFFECT */
   useEffect(() => {
     console.log("LISTEN USEEFFECT");
 
@@ -101,8 +103,8 @@ export default function Home() {
 
       if (file && file.size > 3 * 1024 * 1024) {
         //exceed file size, show message.
-        alert('File size exceed. Max 3MB');
-        e.target.value = '';
+        alert("File size exceed. Max 3MB");
+        e.target.value = "";
         return;
       }
 
@@ -163,19 +165,19 @@ export default function Home() {
     console.log(formData);
 
     try {
-      const response = await fetch('/api/upload', {
-        method: 'POST',
+      const response = await fetch("/api/upload", {
+        method: "POST",
         body: formData,
       });
 
       if (response.ok) {
         const data = await response.json();
-        console.log('Upload successful:', data);
+        console.log("Upload successful:", data);
       } else {
-        console.error('Upload failed');
+        console.error("Upload failed");
       }
     } catch (error) {
-      console.error('Error occurred:', error);
+      console.error("Error occurred:", error);
     }
   };
 
@@ -203,10 +205,10 @@ export default function Home() {
     };
 
     try {
-      const response = await fetch('/api/insert', {
-        method: 'POST',
+      const response = await fetch("/api/insert", {
+        method: "POST",
         headers: {
-          'Content-Type': 'application/json',
+          "Content-Type": "application/json",
         },
         body: JSON.stringify({ data }),
       });
@@ -221,11 +223,11 @@ export default function Home() {
       } else {
         // Handle error cases
         alert(response.status);
-        console.error('Error:', response.status);
+        console.error("Error:", response.status);
       }
     } catch (error) {
-      alert('Error: ' +error);
-      console.error('Error:', error);
+      alert("Error: " +error);
+      console.error("Error:", error);
     }
   };
 
@@ -242,10 +244,11 @@ export default function Home() {
         <h1 className="text-5xl">You'll get something...</h1>
         <p className="text-base">
           Please pick the media that will be associated 
-          with this button for the next minter.
+          with this button for the next minter and the emoji
         </p>
         <p>Clicked Button ID: {clickedButtonId}</p>
 
+        <EmojiPicker />
 
         <form ref={formRef} onSubmit={saveModalContent2}>
 
