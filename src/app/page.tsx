@@ -94,7 +94,7 @@ export default function Home() {
     return untrackStatus;
   };
 
-  //como escolhemos, o que recebemos, como reagimos e o que escolhemos dar ao proximo
+  
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
 
@@ -384,6 +384,9 @@ export default function Home() {
           The doubts over funding are one of the many political challenges facing the 
           nature restoration reforms, which have become one of Brussels’ 
           most contentious pieces of legislation this year
+        </p>
+        <p className="mt-4 text-white text-3xl text-center text-justify font-bold w-[32rem]">
+          How we choose, what we receive, how we react, and what we decide to give to others.
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
