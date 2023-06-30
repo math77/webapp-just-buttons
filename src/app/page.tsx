@@ -410,7 +410,7 @@ export default function Home() {
             disabled={buttons?.[1] > -1 ? true : false}
             onClick={() => openModal(2)}
           >
-            Mint
+            Mint this stuff pleaseeae
           </button>
           <p className="text-sm text-white text-center">4 minted so far</p>
         </div>
@@ -423,7 +423,7 @@ export default function Home() {
             disabled={buttons?.[2] > -1 ? true : false}
             onClick={() => openModal(3)}
           >
-            Enjoy
+            buy
           </button>
           <p className="text-sm text-white text-center">4114 minted so far</p>
         </div>
