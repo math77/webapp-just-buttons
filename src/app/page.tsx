@@ -385,6 +385,8 @@ export default function Home() {
           nature restoration reforms, which have become one of Brussels’ 
           most contentious pieces of legislation this year
         </p>
+      </div>
+      <div className="flex justify-center items-center mt-4 mb-6">
         <p className="mt-4 text-white text-3xl text-center text-justify font-bold w-[32rem]">
           How we choose, what we receive, how we react, and what we decide to give to others.
         </p>
