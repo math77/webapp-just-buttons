@@ -392,13 +392,13 @@ export default function Home() {
           <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={1}
-            className={`py-10 px-10 rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-red-600 shadow-red-600/50 hover:bg-red-700 text-white font-bold`}
+            className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-red-600 shadow-red-600/50 hover:bg-red-700 text-white font-bold`}
             disabled={buttons?.[0] > -1 ? true : false}
             onClick={() => openModal(1)}
           >
             &#128514;&#128514;&#128514; 
           </button>
-          <p className="text-sm text-white text-center">4 minted so far</p>
+          <p className="text-sm text-white text-center">clicked 4 times so far</p>
         </div>
         
 
@@ -412,46 +412,46 @@ export default function Home() {
           >
             Mint this stuff you mfers, min
           </button>
-          <p className="text-sm text-white text-center">4 minted so far</p>
+          <p className="text-sm text-white text-center">clicked 40 times so far</p>
         </div>
 
         <div>
           <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={3} 
-            className={`py-12 px-12 rounded hover:skew-y-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-yellow-600 shadow-yellow-600/50 hover:bg-yellow-700 text-white font-bold`}
+            className={`py-14 px-14 max-w-xs rounded hover:skew-y-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-yellow-600 shadow-yellow-600/50 hover:bg-yellow-700 text-white font-bold`}
             disabled={buttons?.[2] > -1 ? true : false}
             onClick={() => openModal(3)}
           >
             buy
           </button>
-          <p className="text-sm text-white text-center">4114 minted so far</p>
+          <p className="text-sm text-white text-center">clicked 43123 times so far</p>
         </div>
 
         <div>
           <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={4} 
-            className={`py-10 px-10 rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-blue-600 shadow-blue-600/50 hover:bg-blue-700 text-white font-bold`}
+            className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-blue-600 shadow-blue-600/50 hover:bg-blue-700 text-white font-bold`}
             disabled={buttons?.[3] > -1 ? true : false}
             onClick={() => openModal(4)}
           >
             Mint now, and be happy
           </button>
-          <p className="text-sm text-white text-center">4 minted so far</p>
+          <p className="text-sm text-white text-center">clicked 1 times so far</p>
         </div>
 
         <div>
           <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={5} 
-            className={`py-10 px-10 rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-neutral-600 shadow-neutral-600/50 hover:bg-neutral-700 text-white font-bold`}
+            className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-neutral-600 shadow-neutral-600/50 hover:bg-neutral-700 text-white font-bold`}
             disabled={buttons?.[4] > -1 ? true : false}
             onClick={() => openModal(5)}
           >
             Mint now, don't regreat later
           </button>
-          <p className="text-sm text-white text-center">4 minted so far</p>
+          <p className="text-sm text-white text-center">clicked 0 times so far</p>
         </div>
         {renderModal()}
         {renderConnWalletWarningModal()}
