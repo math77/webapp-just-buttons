@@ -4,8 +4,6 @@ import { useState, useEffect, useRef } from "react";
 
 import Modal from "react-modal";
 import Image from "next/image";
-import EmojiPicker from "emoji-picker-react";
-
 
 import { useAccount } from "wagmi"
 
@@ -96,6 +94,7 @@ export default function Home() {
     return untrackStatus;
   };
 
+  //como escolhemos, o que recebemos, como reagimos e o que escolhemos dar ao proximo
   const handleImageChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files.length > 0) {
 
@@ -248,8 +247,6 @@ export default function Home() {
         </p>
         <p>Clicked Button ID: {clickedButtonId}</p>
 
-        <EmojiPicker />
-
         <form ref={formRef} onSubmit={saveModalContent2}>
 
           <div>
@@ -399,7 +396,7 @@ export default function Home() {
             disabled={buttons?.[0] > -1 ? true : false}
             onClick={() => openModal(1)}
           >
-            Mint
+            &#128514; 
           </button>
           <p className="text-sm text-white text-center">4 minted so far</p>
         </div>
