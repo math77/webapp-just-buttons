@@ -386,7 +386,7 @@ export default function Home() {
           most contentious pieces of legislation this year
         </p>
       </div>
-      <div className="flex justify-center items-center mt-4 mb-6">
+      <div className="flex justify-center items-center mt-4 mb-6 bg-black">
         <p className="mt-4 text-white text-3xl text-center text-justify font-bold w-[32rem]">
           How we choose, what we receive, how we react, and what we decide to give to others.
         </p>
@@ -461,7 +461,7 @@ export default function Home() {
         {renderModal()}
         {renderConnWalletWarningModal()}
       </div>
-      <div className="mt-8">
+      <div className="mt-8 bg-black">
         <h1 className="text-2xl text-center text-white font-semibold mb-2">How to</h1>
         <p className="text-base text-center text-white">Click to mint</p>
         <p className="text-base text-center text-white">Do that</p>
