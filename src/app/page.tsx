@@ -406,11 +406,11 @@ export default function Home() {
           <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={2} 
-            className={`py-10 px-10 rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-green-600 shadow-green-600/50 hover:bg-green-700 text-white font-bold`}
+            className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-green-600 shadow-green-600/50 hover:bg-green-700 text-white font-bold`}
             disabled={buttons?.[1] > -1 ? true : false}
             onClick={() => openModal(2)}
           >
-            Mint this stuff pleaseeae
+            Mint this stuff
           </button>
           <p className="text-sm text-white text-center">4 minted so far</p>
         </div>
