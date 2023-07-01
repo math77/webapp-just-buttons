@@ -84,7 +84,7 @@ export default function Home() {
   useEffect(() => {
 
     if (isConnected) {
-      setBlockMinter(minters.includes(address));
+      setBlockMinter(minters.includes(`0x${address}`));
     }
 
   }, [isConnected]);
