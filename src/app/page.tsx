@@ -32,6 +32,8 @@ export default function Home() {
   //current buttons in "use"
   const [buttons, setButtons] = useState<number[]>([]);
 
+  const [blockMinter, setBlockMinter] = useState<boolean>(false);
+
   const formRef = useRef<HTMLFormElement>(null);
 
   const { address, isConnected } = useAccount();
@@ -77,6 +79,15 @@ export default function Home() {
       channel.unsubscribe();  
     };
   }, [channel]);
+
+
+  useEffect(() => {
+
+    if (isConnected) {
+      setBlockMinter(minters.includes(address));
+    }
+
+  }, [isConnected]);
 
   const addNewMinter = async (buttonId: number) => {
     const status = await channel.track({
@@ -331,6 +342,25 @@ export default function Home() {
     )
   };
 
+  const renderBlockedMinterModal = () => {
+    return (
+      <Modal
+        isOpen={blockMinter}
+        className="modal"
+        overlayClassName="modal-overlay"
+        ariaHideApp={false}
+      >
+        <div className="flex justify-center items-center">
+          <div>
+            <h1 className="text-2xl">
+              Seems like you already has a open tab. Close this or the another one, please.
+            </h1>
+          </div>
+        </div>
+      </Modal>
+    )
+  };
+
   const renderElectronicPanel = () => {
     return (
       <div className="py-16 mt-6 bg-black">
@@ -387,7 +417,7 @@ export default function Home() {
         </p>
       </div>
       <div className="flex justify-center items-center mt-4 mb-6 bg-black">
-        <p className="mt-4 text-white text-3xl text-center text-justify font-bold w-[32rem]">
+        <p className="mt-4 text-white text-1xl text-center text-justify font-bold w-[42rem]">
           How we choose, what we receive, how we react, and what we decide to give to others.
         </p>
       </div>
@@ -460,10 +490,11 @@ export default function Home() {
         </div>
         {renderModal()}
         {renderConnWalletWarningModal()}
+        {renderBlockedMinterModal()}
       </div>
       <div className="mt-8 bg-black">
         <h1 className="text-2xl text-center text-white font-semibold mb-2">How to</h1>
-        <p className="text-base text-center text-white">Click to mint</p>
+        <p className="text-base text-center text-white">Choose an button to click</p>
         <p className="text-base text-center text-white">Do that</p>
         <p className="text-base text-center text-white">Do this</p>
         <p className="text-base text-center text-white">Do here this</p>
