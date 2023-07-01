@@ -83,9 +83,13 @@ export default function Home() {
 
   useEffect(() => {
 
+    console.log("CONECTADO: ", isConnected);
+
     if (isConnected) {
       console.log("CALLED BLOCK");
       console.log(minters.includes(`0x${address}`));
+      console.log(minters);
+
       setBlockMinter(minters.includes(`0x${address}`));
     }
 
