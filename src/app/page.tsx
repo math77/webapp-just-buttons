@@ -87,6 +87,8 @@ export default function Home() {
 
     if (isConnected) {
       console.log("CALLED BLOCK");
+      console.log("ADDR");
+      console.log(`0x${address}`);
       console.log(minters.includes(`0x${address}`));
       console.log(minters);
 
