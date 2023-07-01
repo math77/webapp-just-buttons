@@ -6,6 +6,7 @@ import "@rainbow-me/rainbowkit/styles.css";
 import {
   getDefaultWallets,
   RainbowKitProvider,
+  darkTheme
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
 import { goerli, optimism } from "wagmi/chains";
@@ -38,7 +39,7 @@ const wagmiConfig = createConfig({
 
 const Web3Provider: FC<PropsWithChildren<{}>> = ({ children }) => (
   <WagmiConfig config={wagmiConfig}>
-    <RainbowKitProvider chains={chains}>{children}</RainbowKitProvider>
+    <RainbowKitProvider theme={darkTheme()} chains={chains}>{children}</RainbowKitProvider>
   </WagmiConfig>
 );
 
