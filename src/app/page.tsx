@@ -92,7 +92,7 @@ export default function Home() {
       console.log(minters.includes(String(address)));
       console.log(minters);
 
-      setBlockMinter(minters.includes(`0x${address}`));
+      setBlockMinter(minters.includes(String(address)));
     }
 
   }, [isConnected]);
