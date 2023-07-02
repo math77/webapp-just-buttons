@@ -32,8 +32,6 @@ export default function Home() {
   //current buttons in "use"
   const [buttons, setButtons] = useState<number[]>([]);
 
-  const [blockMinter, setBlockMinter] = useState<boolean>(false);
-
   const formRef = useRef<HTMLFormElement>(null);
 
   const { address, isConnected } = useAccount();
@@ -80,22 +78,6 @@ export default function Home() {
     };
   }, [channel]);
 
-
-  useEffect(() => {
-
-    console.log("CONECTADO: ", isConnected);
-
-    if (isConnected) {
-      console.log("CALLED BLOCK");
-      console.log("ADDR");
-      console.log(String(address));
-      console.log(minters.includes(String(address)));
-      console.log(minters);
-
-      setBlockMinter(minters.includes(String(address)));
-    }
-
-  }, [isConnected]);
 
   const addNewMinter = async (buttonId: number) => {
     const status = await channel.track({
@@ -199,6 +181,91 @@ export default function Home() {
     }
   };
 
+
+  const uploadToIPFS = async () => {
+    let formData = new FormData(formRef.current);
+    formData.append("file", selectedImage!);
+
+    try {
+      const response = await fetch("/api/upload", {
+        method: "POST",
+        body: formData,
+      });
+
+      //SEE AND RETURN CID OR NULL (IN ERROR CASE)
+      if (response.ok) {
+        const data = await response.json();
+        return data.ok; //cid
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+  };
+
+  const createWalletSignature = async (creatorAddress: string, nftURI: string) => {
+
+    const data = { 
+      nftIPFSURI: nftURI,
+      nftCreatorAddress: creatorAddress,
+      buttonId: clickedButtonId,
+      userAddress: address
+    };
+
+    try {
+      const response = await fetch("/api/signature", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ data }),
+      });
+
+      //SEE AND RETURN CID OR NULL (IN ERROR CASE)
+      if (response.ok) {
+        const data = await response.json();
+        return data.ok; // signature
+      } else {
+        return null;
+      }
+    } catch (error) {
+      return null;
+    }
+
+  };
+
+
+  const handleNFTSubmit = async (event: React.FormEvent) => {
+    event.preventDefault();
+
+    /* CHECK IF EVERYTHING WAS FILLED */
+
+    if (!formRef.current) {
+      return;
+    }
+
+    if (!selectedImage) {
+      return;
+    }
+
+    /*  */
+
+    const buttonContent = await readButtonData(clickedButtonId);
+
+    const nextNFTMedia = await uploadToIPFS();
+
+    const walletSignature = await createWalletSignature(
+      buttonContent.nft_creator_address, 
+      buttonContent.nft_ipfs_uri
+    );
+
+    //make transaction to mint nft to current minter (address conected...)
+    
+
+
+  };
+
   const saveModalContent2 = async (event: React.FormEvent) => {
     event.preventDefault();
     /*
@@ -206,11 +273,13 @@ export default function Home() {
       WORKFLOW
 
       Use realtime to block the button "someone is minting"
-      Get the data of NFT (uri, creator, buttonID)
-      Upload the new nft for IPFS nft.storage and get the new cid
+      Get the data of previous setted NFT (media) (uri, creator, buttonID)SUPABASE
+      Upload the new nft for IPFS nft.storage and get the new cid (new media for next nft)
+
       Make the signature on the server with the data + my project wallet
-      Make a transaction to mint the nft for the current minter
-      If the transaction succed, save the data of new nft on supabase,
+      Make a transaction to mint the nft for the current minter (old media)
+
+      If the transaction succed, save the data of new nft on supabase, (media for next NFT)
       tag the old one with "minted" and unblock the button.
 
 
@@ -294,7 +363,7 @@ export default function Home() {
               <div className="flex flex-col items-center justify-center w-full h-64 border-2 rounded-lg">
                 <Image 
                   src={URL.createObjectURL(selectedImage)}
-                  objectFit="cover"
+                  style={{objectFit: "contain"}}
                   layout="fixed"
                   width={256}
                   height={256}
@@ -344,25 +413,6 @@ export default function Home() {
             <button onClick={closeWarningModal} className="bg-black text-black px-10 py-4 rounded-md">
               ok
             </button>
-          </div>
-        </div>
-      </Modal>
-    )
-  };
-
-  const renderBlockedMinterModal = () => {
-    return (
-      <Modal
-        isOpen={blockMinter}
-        className="modal"
-        overlayClassName="modal-overlay"
-        ariaHideApp={false}
-      >
-        <div className="flex justify-center items-center">
-          <div>
-            <h1 className="text-2xl">
-              Seems like you already has a open tab. Close this or the another one, please.
-            </h1>
           </div>
         </div>
       </Modal>
@@ -498,7 +548,6 @@ export default function Home() {
         </div>
         {renderModal()}
         {renderConnWalletWarningModal()}
-        {renderBlockedMinterModal()}
       </div>
       <div className="mt-8 bg-black">
         <h1 className="text-2xl text-center text-white font-semibold mb-2">How to</h1>

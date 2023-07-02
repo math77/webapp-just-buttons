@@ -41,7 +41,7 @@ export async function POST(request: NextRequest) {
     const cid = metadata.url; //ipnft with ipfs://ipfnt/metadata.json
 
     return NextResponse.json(
-      { ok: `NFT uploaded ${cid}` },
+      { ok: cid },
       { status: 200 }
     );
 

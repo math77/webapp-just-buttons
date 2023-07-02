@@ -37,7 +37,7 @@ export async function POST(request: NextRequest) {
     })
 
     return NextResponse.json(
-      { ok: `Signature created ${signature}` },
+      { ok: signature },
       { status: 200 }
     );
 
