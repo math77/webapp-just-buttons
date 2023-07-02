@@ -183,7 +183,7 @@ export default function Home() {
 
 
   const uploadToIPFS = async () => {
-    let formData = new FormData(formRef.current);
+    let formData = new FormData(formRef.current!);
     formData.append("file", selectedImage!);
 
     try {
