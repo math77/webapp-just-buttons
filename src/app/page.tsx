@@ -35,7 +35,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: [isConnected, 1, "", mintReferral],
+    args: [address, 1, "", mintReferral],
     enabled: isConnected
   });
 
