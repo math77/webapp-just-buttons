@@ -13,6 +13,8 @@ import {
   usePrepareContractWrite,
 } from "wagmi";
 
+import { parseEther } from "viem";
+
 
 import Header from "@/components/Header";
 import Pending from "@/components/Pending";
@@ -32,10 +34,11 @@ export default function Home() {
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
     address: contractAddress as Address,
-    abi: abi as const,
+    abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
     args: address ? [address, BigInt(1), "", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
+    value: parseEther('0.000777'),
     enabled: isConnected
   });
 
