@@ -28,6 +28,7 @@ export default function Home() {
 
   const [clickedButtonId, setClickedButtonId] = useState<number>(0);
   const [contractAddress, setContractAddress] = useState<string>("");
+  const [randAddresses, setRandAddresses] = useState<string[]>([]);
 
   const { address, isConnected } = useAccount();
 
@@ -58,31 +59,33 @@ export default function Home() {
     hash: mintData?.hash,
   });
 
-  const shuffleArray = (array: string[]) => {
-    for (let i = array.length - 1; i > 0; i--) {
+  const shuffleArray = () => {
+
+    let addresses = [
+      "",
+      "",
+      "",
+      "",
+      ""
+    ];
+
+
+    for (let i = addresses.length - 1; i > 0; i--) {
       const j = Math.floor(Math.random() * (i + 1));
-      const temp = array[i];
-      array[i] = array[j];
-      array[j] = temp;
+      const temp = addresses[i];
+      addresses[i] = addresses[j];
+      addresses[j] = temp;
     }
 
-    //return array; 
+    return addresses;
   };
 
   const setButton = (button: number) => {
-    //setClickedButtonId(button);
-    setContractAddress(addresses[button]);
+    setContractAddress(randAddresses[button]);
   };
 
   useEffect(() => {
-
-    console.log(addresses);
-
-    shuffleArray(addresses);
-    //setRandAddresses(addresses);
-
-    console.log("POST SHUFFLE");
-    console.log(addresses);
+    setRandAddresses(shuffleArray());
   })
 
   //disabled={isPrepareError || !isConnected || txMintLoading}
