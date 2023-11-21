@@ -2272,11 +2272,3 @@ export const abi = [
     }
     
 ] as const;
-
-export addresses = [
-  "",
-  "",
-  "",
-  "",
-  ""
-] as string[];

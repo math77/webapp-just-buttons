@@ -19,7 +19,7 @@ import { parseEther } from "viem";
 import Header from "@/components/Header";
 import Pending from "@/components/Pending";
 
-import { CHAIN_ID, abi, addresses } from "../contracts_stuff";
+import { CHAIN_ID, abi } from "../contracts_stuff";
 
 
 const mintReferral = "0x5ec02bFe7cef41c80ACEba81B1e9B012Bdd3c15A" as Address;
