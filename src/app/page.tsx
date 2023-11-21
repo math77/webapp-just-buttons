@@ -20,6 +20,8 @@ import Pending from "@/components/Pending";
 import { CHAIN_ID, abi, addresses } from "../contracts_stuff";
 
 
+const mintReferral = "0x5ec02bFe7cef41c80ACEba81B1e9B012Bdd3c15A" as Address;
+
 export default function Home() {
 
   const [clickedButtonId, setClickedButtonId] = useState<number>(0);
@@ -33,7 +35,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: newDuelValid ? [duelTitle!, duelDescription!] : ["", ""],
+    args: [isConnected, 1, "", mintReferral] : ["", ""],
     enabled: isConnected
   });
 
