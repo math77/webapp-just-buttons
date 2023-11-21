@@ -2273,10 +2273,10 @@ export const abi = [
     
 ] as const;
 
-export const addresses = [
+export addresses = [
   "",
   "",
   "",
   "",
   ""
-] as const;
+] as string[];
