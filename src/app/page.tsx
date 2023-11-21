@@ -6,6 +6,7 @@ import Modal from "react-modal";
 import Image from "next/image";
 
 import {
+  Address,
   useAccount,
   useContractWrite,
   useWaitForTransaction,
@@ -28,7 +29,7 @@ export default function Home() {
 
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
-    address: contractAddress,
+    address: contractAddress as Address,
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
@@ -60,7 +61,7 @@ export default function Home() {
       array[j] = temp;
     }
 
-    //return array;
+    //return array; 
   };
 
   const setButton = (button: number) => {
