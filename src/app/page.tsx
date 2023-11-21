@@ -32,7 +32,7 @@ export default function Home() {
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
     address: contractAddress as Address,
-    abi: abi,
+    abi: abi as const,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
     args: address ? [address, BigInt(1), "", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
