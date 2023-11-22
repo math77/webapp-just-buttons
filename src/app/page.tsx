@@ -96,14 +96,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          The doubts over funding are one of the many political challenges facing the 
-          nature restoration reforms, which have become one of Brussels’ 
-          most contentious pieces of legislation this year
-        </p>
-      </div>
-      <div className="flex justify-center items-center mt-4 mb-6 bg-black">
-        <p className="mt-4 text-white text-1xl text-center text-justify font-bold w-[42rem]">
-          How we choose, what we receive, how we react, and what we decide to give to others.
+          Choose a button and mint a "free" random NFT on the Zora Network.
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
@@ -168,9 +161,11 @@ export default function Home() {
         <h1 className="text-2xl text-center text-white font-semibold mb-2">
           You got...
         </h1>
-        <h1 className="text-2xl text-center text-white font-semibold mb-2">
-          {`https://zora.co/collect/zora:${contractAddress}/1`}
-        </h1>
+        {txMintSuccess && (
+          <h1 className="text-2xl text-center text-white font-semibold mb-2">
+            {`https://zora.co/collect/zora:${contractAddress}/1`}
+          </h1>
+        )}
       </div>
     </main>
   )
