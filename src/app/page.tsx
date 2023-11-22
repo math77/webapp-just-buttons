@@ -34,7 +34,7 @@ export default function Home() {
 
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
-    address: contractAddress as Address,
+    address: randAddresses[clickedButtonId] as Address,
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
@@ -81,7 +81,10 @@ export default function Home() {
   };
 
   const setButton = (button: number) => {
+    setClickedButtonId(button-1);
     setContractAddress(randAddresses[button-1]);
+
+    mint?.();
   };
 
   useEffect(() => {
