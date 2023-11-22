@@ -9,24 +9,29 @@ import {
   darkTheme
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { goerli, optimism } from "wagmi/chains";
+import { zora } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
+import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
 
-const ALCHEMY_ID = process.env.NEXT_PUBLIC_ALCHEMY_ID as string;
 const PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID as string;
 
+
 const { chains, publicClient } = configureChains(
-  [optimism, goerli],
+  [zora],
   [
-    alchemyProvider({ apiKey: ALCHEMY_ID }),
+    jsonRpcProvider({
+      rpc: (chain) => ({
+        http: `https://rpc.zora.energy/`,
+      }),
+    }),
     publicProvider()
   ]
 );
 
 const { connectors } = getDefaultWallets({
-  appName: "Just Buttons",
+  appName: "Lucky Buttons",
   projectId: PROJECT_ID,
   chains
 });

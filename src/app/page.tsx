@@ -62,11 +62,11 @@ export default function Home() {
   const shuffleArray = () => {
 
     let addresses = [
-      "",
-      "",
-      "",
-      "",
-      ""
+      "0xd84d0ea1e675648fa608c36c2c2257dfc6078252",
+      "0xaa8c4286883c46ffc3225500f4955f8edc0a351f",
+      "0xe42e32a9654d6df8f3415e7129f82bf5adbddd8c",
+      "0xf645b4b3e29fd8b2b23d3439b7739fafd11329b8",
+      "0x8dd4c6f2206568ae4e93d28ac8f7ec936b9e10e2"
     ];
 
 
@@ -81,7 +81,7 @@ export default function Home() {
   };
 
   const setButton = (button: number) => {
-    setContractAddress(randAddresses[button]);
+    setContractAddress(randAddresses[button-1]);
   };
 
   useEffect(() => {
@@ -109,7 +109,6 @@ export default function Home() {
       <div className="flex justify-center items-center bg-black">
 
         <div>
-          <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={1}
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-red-600 shadow-red-600/50 hover:bg-red-700 text-white font-bold`}
@@ -118,68 +117,60 @@ export default function Home() {
           >
             &#128514;&#128514;&#128514; 
           </button>
-          <p className="text-sm text-white text-center">clicked 4 times so far</p>
         </div>
         
 
         <div>
-          <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={2} 
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-green-600 shadow-green-600/50 hover:bg-green-700 text-white font-bold`}
             disabled={isPrepareError || !isConnected || txMintLoading}
-            onClick={() => setClickedButtonId(2)}
+            onClick={() => setButton(2)}
           >
-            Mint this stuff you mfers, min
+            Mint this stuff you mfers, mint
           </button>
-          <p className="text-sm text-white text-center">clicked 40 times so far</p>
         </div>
 
         <div>
-          <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={3} 
             className={`py-14 px-14 max-w-xs rounded hover:skew-y-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-yellow-600 shadow-yellow-600/50 hover:bg-yellow-700 text-white font-bold`}
             disabled={isPrepareError || !isConnected || txMintLoading}
-            onClick={() => setClickedButtonId(3)}
+            onClick={() => setButton(3)}
           >
             buy
           </button>
-          <p className="text-sm text-white text-center">clicked 43123 times so far</p>
         </div>
 
         <div>
-          <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={4} 
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-blue-600 shadow-blue-600/50 hover:bg-blue-700 text-white font-bold`}
             disabled={isPrepareError || !isConnected || txMintLoading}
-            onClick={() => setClickedButtonId(4)}
+            onClick={() => setButton(4)}
           >
             Mint now, and be happy
           </button>
-          <p className="text-sm text-white text-center">clicked 1 times so far</p>
         </div>
 
         <div>
-          <p className="text-sm text-white text-center">Ξ 0.5</p>
           <button 
             key={5} 
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-neutral-600 shadow-neutral-600/50 hover:bg-neutral-700 text-white font-bold`}
             disabled={isPrepareError || !isConnected || txMintLoading}
-            onClick={() => setClickedButtonId(5)}
+            onClick={() => setButton(5)}
           >
             Mint now, don't regreat later
           </button>
-          <p className="text-sm text-white text-center">clicked 0 times so far</p>
         </div>
       </div>
       <div className="mt-8 bg-black">
-        <h1 className="text-2xl text-center text-white font-semibold mb-2">How to</h1>
-        <p className="text-base text-center text-white">Choose an button to click</p>
-        <p className="text-base text-center text-white">Do that</p>
-        <p className="text-base text-center text-white">Do this</p>
-        <p className="text-base text-center text-white">Do here this</p>
+        <h1 className="text-2xl text-center text-white font-semibold mb-2">
+          You got...
+        </h1>
+        <h1 className="text-2xl text-center text-white font-semibold mb-2">
+          {`https://zora.co/collect/zora:${contractAddress}/1`}
+        </h1>
       </div>
     </main>
   )
