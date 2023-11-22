@@ -158,13 +158,15 @@ export default function Home() {
         </div>
       </div>
       <div className="mt-8 bg-black">
-        <h1 className="text-2xl text-center text-white font-semibold mb-2">
-          You got...
-        </h1>
         {txMintSuccess && (
-          <h1 className="text-2xl text-center text-white font-semibold mb-2">
-            {`https://zora.co/collect/zora:${contractAddress}/1`}
-          </h1>
+          <div>
+            <h1 className="text-2xl text-center text-white font-semibold mb-2">
+              You got...
+            </h1>
+            <h1 className="text-2xl text-center text-white font-semibold mb-2">
+              {`https://zora.co/collect/zora:${contractAddress}/1`}
+            </h1>
+          </div>
         )}
       </div>
     </main>
