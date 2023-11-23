@@ -29,6 +29,7 @@ export default function Home() {
   const [clickedButtonId, setClickedButtonId] = useState<number>(0);
   const [contractAddress, setContractAddress] = useState<string>("");
   const [randAddresses, setRandAddresses] = useState<string[]>([]);
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { address, isConnected } = useAccount();
 
@@ -83,6 +84,11 @@ export default function Home() {
   const setButton = (button: number) => {
     setClickedButtonId(button-1);
     setContractAddress(randAddresses[button-1]);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => {
+    setIsModalOpen(false);
   };
 
   useEffect(() => {
@@ -95,8 +101,8 @@ export default function Home() {
   const renderSetSuccessorModal = () => {
     return (
       <Modal
-        isOpen={isSetSuccessorModalOpen}
-        onRequestClose={closeSuccessorModal}
+        isOpen={isModalOpen}
+        onRequestClose={closeModal}
         className="modal h-fit"
         overlayClassName="modal-overlay"
         ariaHideApp={false}
@@ -116,7 +122,7 @@ export default function Home() {
             <button 
               disabled={isPrepareError || !isConnected || txMintLoading}
               className="cursor-pointer bg-transparent text-black font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900 hover:text-white"
-              onClick={() => mint?.()}
+              onClick={closeModal}
             >
               Cancel
             </button>
