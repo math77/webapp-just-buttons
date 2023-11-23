@@ -93,7 +93,7 @@ export default function Home() {
 
   useEffect(() => {
     setRandAddresses(shuffleArray());
-  })
+  }, []);
 
   //disabled={isPrepareError || !isConnected || txMintLoading}
   //{!txMintLoading ? 'Create' : <Pending className="animate-spin" />}
