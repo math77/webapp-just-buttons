@@ -41,7 +41,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: buttonValid ? [address, BigInt(1), "lucky buttons by acme", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
+    args: address ? [address, BigInt(1), "lucky buttons by acme", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
