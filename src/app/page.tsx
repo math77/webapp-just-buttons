@@ -130,6 +130,14 @@ export default function Home() {
             </div>
           )}
 
+          {(isPrepareError || isError) && (
+            <div>
+              <h1 className="text-black font-semibold text-2xl">
+                Error: {(prepareError || txMintError)?.message}
+              </h1>
+            </div>
+          )}
+
           {txMintSuccess && (
             <div>
               <h1 className="text-2xl text-center text-white font-semibold mb-2">
@@ -154,7 +162,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
