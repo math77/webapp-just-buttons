@@ -83,8 +83,6 @@ export default function Home() {
   const setButton = (button: number) => {
     setClickedButtonId(button-1);
     setContractAddress(randAddresses[button-1]);
-
-    mint?.();
   };
 
   useEffect(() => {
@@ -94,12 +92,46 @@ export default function Home() {
   //disabled={isPrepareError || !isConnected || txMintLoading}
   //{!txMintLoading ? 'Create' : <Pending className="animate-spin" />}
 
+  const renderSetSuccessorModal = () => {
+    return (
+      <Modal
+        isOpen={isSetSuccessorModalOpen}
+        onRequestClose={closeSuccessorModal}
+        className="modal h-fit"
+        overlayClassName="modal-overlay"
+        ariaHideApp={false}
+      > 
+        <div className="flex justify-center items-center">
+          <div className="grid justify-items-center">
+            <h1 className="mb-6 text-4xl font-bold text-black">
+              Are you sure...?!
+            </h1>
+            <button 
+              disabled={isPrepareError || !isConnected || txMintLoading}
+              className="cursor-pointer bg-gray-800 text-white font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900"
+              onClick={() => mint?.()}
+            >
+              {!txMintLoading ? 'Mint' : <Pending className="animate-spin" />}
+            </button>
+            <button 
+              disabled={isPrepareError || !isConnected || txMintLoading}
+              className="cursor-pointer bg-transparent text-black font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900 hover:text-white"
+              onClick={() => mint?.()}
+            >
+              Cancel
+            </button>
+          </div>
+        </div>
+      </Modal>
+    );
+  }
+
   return (
     <main className="h-screen bg-black">
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!!!!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
@@ -108,7 +140,6 @@ export default function Home() {
           <button 
             key={1}
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-red-600 shadow-red-600/50 hover:bg-red-700 text-white font-bold`}
-            disabled={isPrepareError || !isConnected || txMintLoading}
             onClick={() => setButton(1)}
           >
             &#128514;&#128514;&#128514; 
@@ -120,7 +151,6 @@ export default function Home() {
           <button 
             key={2} 
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-green-600 shadow-green-600/50 hover:bg-green-700 text-white font-bold`}
-            disabled={isPrepareError || !isConnected || txMintLoading}
             onClick={() => setButton(2)}
           >
             Mint this stuff you mfers, mint
@@ -131,7 +161,6 @@ export default function Home() {
           <button 
             key={3} 
             className={`py-14 px-14 max-w-xs rounded hover:skew-y-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-yellow-600 shadow-yellow-600/50 hover:bg-yellow-700 text-white font-bold`}
-            disabled={isPrepareError || !isConnected || txMintLoading}
             onClick={() => setButton(3)}
           >
             buy
@@ -142,7 +171,6 @@ export default function Home() {
           <button 
             key={4} 
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-blue-600 shadow-blue-600/50 hover:bg-blue-700 text-white font-bold`}
-            disabled={isPrepareError || !isConnected || txMintLoading}
             onClick={() => setButton(4)}
           >
             Mint now, and be happy
@@ -153,7 +181,6 @@ export default function Home() {
           <button 
             key={5} 
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-neutral-600 shadow-neutral-600/50 hover:bg-neutral-700 text-white font-bold`}
-            disabled={isPrepareError || !isConnected || txMintLoading}
             onClick={() => setButton(5)}
           >
             Mint now, don't regreat later
@@ -172,6 +199,7 @@ export default function Home() {
           </div>
         )}
       </div>
+      {renderSetSuccessorModal()}
     </main>
   )
 }
