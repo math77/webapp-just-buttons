@@ -28,7 +28,7 @@ export default function Home() {
 
   const [clickedButtonId, setClickedButtonId] = useState<number>(-1);
   const [contractAddress, setContractAddress] = useState<string>("");
-  const [randAddresses, setRandAddresses] = useState<string[]>([]);
+  const [randAddresses, setRandAddresses] = useState<Address[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
   const { address, isConnected } = useAccount();
@@ -65,11 +65,11 @@ export default function Home() {
   const shuffleArray = () => {
 
     let addresses = [
-      "0xd84d0ea1e675648fa608c36c2c2257dfc6078252",
-      "0xaa8c4286883c46ffc3225500f4955f8edc0a351f",
-      "0xe42e32a9654d6df8f3415e7129f82bf5adbddd8c",
-      "0xf645b4b3e29fd8b2b23d3439b7739fafd11329b8",
-      "0x8dd4c6f2206568ae4e93d28ac8f7ec936b9e10e2"
+      "0xd84d0ea1e675648fa608c36c2c2257dfc6078252" as Address,
+      "0xaa8c4286883c46ffc3225500f4955f8edc0a351f" as Address,
+      "0xe42e32a9654d6df8f3415e7129f82bf5adbddd8c" as Address,
+      "0xf645b4b3e29fd8b2b23d3439b7739fafd11329b8" as Address,
+      "0x8dd4c6f2206568ae4e93d28ac8f7ec936b9e10e2" as Address
     ];
 
 
@@ -164,7 +164,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
