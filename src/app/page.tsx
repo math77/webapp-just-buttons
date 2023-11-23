@@ -37,8 +37,8 @@ export default function Home() {
   const buttonValid = clickedButtonId > -1;
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
-    address: randAddresses[clickedButtonId],
-    abi: abi,
+    address: randAddresses[clickedButtonId] as const,
+    abi: abi as const,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
     args: buttonValid ? [address, BigInt(1), "lucky buttons by acme", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
