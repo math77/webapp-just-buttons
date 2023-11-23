@@ -26,7 +26,7 @@ const mintReferral = "0x5ec02bFe7cef41c80ACEba81B1e9B012Bdd3c15A" as Address;
 
 export default function Home() {
 
-  const [clickedButtonId, setClickedButtonId] = useState<number>(0);
+  const [clickedButtonId, setClickedButtonId] = useState<number>(-1);
   const [contractAddress, setContractAddress] = useState<string>("");
   const [randAddresses, setRandAddresses] = useState<string[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
@@ -41,7 +41,7 @@ export default function Home() {
     chainId: CHAIN_ID,
     args: address ? [address, BigInt(1), "", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
     value: parseEther('0.000777'),
-    enabled: isConnected
+    enabled: clickedButtonId > -1
   });
 
   const {
@@ -108,25 +108,42 @@ export default function Home() {
         ariaHideApp={false}
       > 
         <div className="flex justify-center items-center">
-          <div className="grid justify-items-center">
-            <h1 className="mb-6 text-4xl font-bold text-black">
-              Are you sure...?!
-            </h1>
-            <button 
-              disabled={isPrepareError || !isConnected || txMintLoading}
-              className="cursor-pointer bg-gray-800 text-white font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900"
-              onClick={() => mint?.()}
-            >
-              {!txMintLoading ? 'Mint' : <Pending className="animate-spin" />}
-            </button>
-            <button 
-              disabled={isPrepareError || !isConnected || txMintLoading}
-              className="cursor-pointer bg-transparent text-black font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900 hover:text-white"
-              onClick={closeModal}
-            >
-              Cancel
-            </button>
-          </div>
+          {!txMintSuccess && (
+            <div className="grid justify-items-center">
+              <h1 className="mb-6 text-4xl font-bold text-black">
+                Are you sure...?!
+              </h1>
+              <button 
+                disabled={isPrepareError || !isConnected || txMintLoading}
+                className="cursor-pointer bg-gray-800 text-white font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900"
+                onClick={() => mint?.()}
+              >
+                {!txMintLoading ? 'Mint' : <Pending className="animate-spin" />}
+              </button>
+              <button 
+                disabled={txMintLoading}
+                className="cursor-pointer bg-transparent text-black font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900 hover:text-white"
+                onClick={closeModal}
+              >
+                Cancel
+              </button>
+            </div>
+          )}
+
+          {txMintSuccess && (
+            <div>
+              <h1 className="text-2xl text-center text-white font-semibold mb-2">
+                You got...
+              </h1>
+              <a 
+                className="text-2xl text-center text-black font-semibold mb-2"
+                href={`https://zora.co/collect/zora:${contractAddress}/1`}
+                target="_blank"
+              >
+                Click here
+              </a>
+            </div>
+          )}
         </div>
       </Modal>
     );
@@ -137,7 +154,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!!!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
@@ -192,18 +209,6 @@ export default function Home() {
             Mint now, don't regreat later
           </button>
         </div>
-      </div>
-      <div className="mt-8 bg-black">
-        {txMintSuccess && (
-          <div>
-            <h1 className="text-2xl text-center text-white font-semibold mb-2">
-              You got...
-            </h1>
-            <h1 className="text-2xl text-center text-white font-semibold mb-2">
-              {`https://zora.co/collect/zora:${contractAddress}/1`}
-            </h1>
-          </div>
-        )}
       </div>
       {renderSetSuccessorModal()}
     </main>
