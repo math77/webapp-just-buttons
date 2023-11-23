@@ -34,14 +34,16 @@ export default function Home() {
   const { address, isConnected } = useAccount();
 
 
+  const buttonValid = clickedButtonId > -1;
+
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
-    address: randAddresses[clickedButtonId] as Address,
+    address: randAddresses[clickedButtonId],
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: address ? [address, BigInt(1), "lucky buttons by acme", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
+    args: buttonValid ? [address, BigInt(1), "lucky buttons by acme", mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
     value: parseEther('0.000777'),
-    enabled: clickedButtonId > -1
+    enabled: buttonValid
   });
 
   const {
@@ -162,7 +164,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!!!
+          Choose a button and mint a "free" random NFT on the Zora Network!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
