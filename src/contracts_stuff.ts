@@ -1,4 +1,5 @@
-export const CHAIN_ID = 7777777;
+//export const CHAIN_ID = 7777777;
+export const CHAIN_ID = 999;
 
 export const abi = [
     {
