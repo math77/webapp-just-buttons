@@ -38,11 +38,11 @@ export default function Home() {
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
     /*address: contractAddress as Address,*/
-    address: "0xd3165b63d4a8d814669ab36767defcb8363a5f19" as Address,
+    address: "0x37716712456308ea38921a8eba10f85eb1506159" as Address,
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? ["0xd3165b63d4a8d814669ab36767defcb8363a5f19" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
+    args: contractAddress ? ["0x37716712456308ea38921a8eba10f85eb1506159" as Address, BigInt(12), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
@@ -148,7 +148,7 @@ export default function Home() {
               </h1>
               <a 
                 className="text-2xl text-center text-black font-semibold mb-2"
-                href={`https://testnet.zora.co/collect/zgor:${0xd3165b63d4a8d814669ab36767defcb8363a5f19}/1`}
+                href={`https://testnet.zora.co/collect/zgor:${0x37716712456308ea38921a8eba10f85eb1506159}/12`}
                 target="_blank"
               >
                 Click here
@@ -165,7 +165,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
