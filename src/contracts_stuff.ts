@@ -5,27 +5,12 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "_zoraERC721TransferHelper",
-                "type": "address"
-            },
-            {
-                "internalType": "contract IFactoryUpgradeGate",
-                "name": "_factoryUpgradeGate",
+                "name": "_mintFeeRecipient",
                 "type": "address"
             },
             {
                 "internalType": "address",
-                "name": "_marketFilterDAOAddress",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "_mintFeeAmount",
-                "type": "uint256"
-            },
-            {
-                "internalType": "address payable",
-                "name": "_mintFeeRecipient",
+                "name": "_upgradeGate",
                 "type": "address"
             },
             {
@@ -38,24 +23,81 @@ export const abi = [
         "type": "constructor"
     },
     {
+        "inputs": [],
+        "name": "ADDRESS_DELEGATECALL_TO_NON_CONTRACT",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ADDRESS_LOW_LEVEL_CALL_FAILED",
+        "type": "error"
+    },
+    {
         "inputs": [
             {
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
+                "internalType": "address",
+                "name": "operator",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
             }
         ],
-        "name": "Access_MissingRoleOrAdmin",
+        "name": "Burn_NotOwnerOrApproved",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "Access_OnlyAdmin",
+        "name": "CREATOR_FUNDS_RECIPIENT_NOT_SET",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "bytes",
+                "name": "reason",
+                "type": "bytes"
+            }
+        ],
+        "name": "CallFailed",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "Access_WithdrawNotAllowed",
+        "name": "Call_TokenIdMismatch",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "CallerNotZoraCreator1155",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "quantity",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "totalMinted",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "maxSupply",
+                "type": "uint256"
+            }
+        ],
+        "name": "CannotMintMoreTokens",
         "type": "error"
     },
     {
@@ -66,47 +108,134 @@ export const abi = [
                 "type": "address"
             }
         ],
-        "name": "Admin_InvalidUpgradeAddress",
+        "name": "Config_TransferHookNotSupported",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "Admin_UnableToFinalizeNotOpenEdition",
+        "name": "ERC1155_ACCOUNTS_AND_IDS_LENGTH_MISMATCH",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "ApprovalCallerNotOwnerNorApproved",
+        "name": "ERC1155_ADDRESS_ZERO_IS_NOT_A_VALID_OWNER",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "ApprovalQueryForNonexistentToken",
+        "name": "ERC1155_BURN_AMOUNT_EXCEEDS_BALANCE",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "ApprovalToCurrentOwner",
+        "name": "ERC1155_BURN_FROM_ZERO_ADDRESS",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "ApproveToCaller",
+        "name": "ERC1155_CALLER_IS_NOT_TOKEN_OWNER_OR_APPROVED",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "BalanceQueryForZeroAddress",
+        "name": "ERC1155_ERC1155RECEIVER_REJECTED_TOKENS",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "CREATOR_FUNDS_RECIPIENT_NOT_SET",
+        "name": "ERC1155_IDS_AND_AMOUNTS_LENGTH_MISMATCH",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "ExternalMetadataRenderer_CallFailed",
+        "name": "ERC1155_INSUFFICIENT_BALANCE_FOR_TRANSFER",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1155_MINT_TO_ZERO_ADDRESS",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1155_SETTING_APPROVAL_FOR_SELF",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1155_TRANSFER_TO_NON_ERC1155RECEIVER_IMPLEMENTER",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1155_TRANSFER_TO_ZERO_ADDRESS",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1967_NEW_IMPL_NOT_CONTRACT",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1967_NEW_IMPL_NOT_UUPS",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "ERC1967_UNSUPPORTED_PROXIABLEUUID",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "ETHWithdrawFailed",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "FUNCTION_MUST_BE_CALLED_THROUGH_ACTIVE_PROXY",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "FUNCTION_MUST_BE_CALLED_THROUGH_DELEGATECALL",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "contractValue",
+                "type": "uint256"
+            }
+        ],
+        "name": "FundsWithdrawInsolvent",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "INITIALIZABLE_CONTRACT_ALREADY_INITIALIZED",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "INITIALIZABLE_CONTRACT_IS_NOT_INITIALIZING",
         "type": "error"
     },
     {
@@ -120,33 +249,80 @@ export const abi = [
         "type": "error"
     },
     {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "mintTo",
+                "type": "address"
+            },
+            {
+                "internalType": "bytes32[]",
+                "name": "merkleProof",
+                "type": "bytes32[]"
+            },
+            {
+                "internalType": "bytes32",
+                "name": "merkleRoot",
+                "type": "bytes32"
+            }
+        ],
+        "name": "InvalidMerkleProof",
+        "type": "error"
+    },
+    {
         "inputs": [],
         "name": "InvalidMintSchedule",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "MarketFilterDAOAddressNotSupportedForChain",
+        "name": "MintNotYetStarted",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "MintFee_FundsSendFailure",
+        "name": "Mint_InsolventSaleTransfer",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "MintToZeroAddress",
+        "name": "Mint_TokenIDMintNotAllowed",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "MintZeroQuantity",
+        "name": "Mint_UnknownCommand",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "Mint_SoldOut",
+        "name": "Mint_ValueTransferFail",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "MinterContractAlreadyExists",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "MinterContractDoesNotExist",
+        "type": "error"
+    },
+    {
+        "inputs": [],
+        "name": "NewOwnerNeedsToBeAdmin",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "NoRendererForToken",
         "type": "error"
     },
     {
@@ -156,115 +332,133 @@ export const abi = [
     },
     {
         "inputs": [],
-        "name": "ONLY_OWNER",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "ONLY_PENDING_OWNER",
+        "name": "PremintDeleted",
         "type": "error"
     },
     {
         "inputs": [
             {
                 "internalType": "address",
-                "name": "operator",
+                "name": "caller",
+                "type": "address"
+            },
+            {
+                "internalType": "address",
+                "name": "recipient",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
+                "type": "uint256"
+            }
+        ],
+        "name": "ProtocolRewardsWithdrawFailed",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "renderer",
                 "type": "address"
             }
         ],
-        "name": "OperatorNotAllowed",
+        "name": "RendererNotValid",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "OwnerQueryForNonexistentToken",
+        "name": "Renderer_NotValidRendererContract",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "Presale_Inactive",
+        "name": "SaleEnded",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "Presale_MerkleNotApproved",
+        "name": "SaleHasNotStarted",
         "type": "error"
     },
     {
-        "inputs": [],
-        "name": "Presale_TooManyForAddress",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "ProtocolRewards_WithdrawSendFailure",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "Purchase_TooManyForAddress",
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "targetContract",
+                "type": "address"
+            }
+        ],
+        "name": "Sale_CannotCallNonSalesContract",
         "type": "error"
     },
     {
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "correctPrice",
+                "name": "expected",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "actual",
                 "type": "uint256"
             }
         ],
-        "name": "Purchase_WrongPrice",
+        "name": "TokenIdMismatch",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "RemoteOperatorFilterRegistryCallFailed",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "Sale_Inactive",
+        "name": "UUPS_UPGRADEABLE_MUST_NOT_BE_CALLED_THROUGH_DELEGATECALL",
         "type": "error"
     },
     {
         "inputs": [
             {
-                "internalType": "uint16",
-                "name": "maxRoyaltyBPS",
-                "type": "uint16"
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "limit",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "requestedAmount",
+                "type": "uint256"
             }
         ],
-        "name": "Setup_RoyaltyPercentageTooHigh",
+        "name": "UserExceedsMintLimit",
+        "type": "error"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "role",
+                "type": "uint256"
+            }
+        ],
+        "name": "UserMissingRoleForToken",
         "type": "error"
     },
     {
         "inputs": [],
-        "name": "TransferCallerNotOwnerNorApproved",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "TransferFromIncorrectOwner",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "TransferToNonERC721ReceiverImplementer",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "TransferToZeroAddress",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "URIQueryForNonexistentToken",
-        "type": "error"
-    },
-    {
-        "inputs": [],
-        "name": "Withdraw_FundsSendFailure",
+        "name": "WrongValueSent",
         "type": "error"
     },
     {
@@ -292,32 +486,7 @@ export const abi = [
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "owner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "approved",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "Approval",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "owner",
+                "name": "account",
                 "type": "address"
             },
             {
@@ -340,25 +509,6 @@ export const abi = [
         "anonymous": false,
         "inputs": [
             {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "_fromTokenId",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "_toTokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "BatchMetadataUpdate",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
                 "indexed": true,
                 "internalType": "address",
                 "name": "beacon",
@@ -374,17 +524,55 @@ export const abi = [
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "source",
+                "name": "updater",
                 "type": "address"
             },
             {
+                "indexed": true,
+                "internalType": "enum IZoraCreator1155.ConfigUpdate",
+                "name": "updateType",
+                "type": "uint8"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "address",
+                        "name": "owner",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint96",
+                        "name": "__gap1",
+                        "type": "uint96"
+                    },
+                    {
+                        "internalType": "address payable",
+                        "name": "fundsRecipient",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint96",
+                        "name": "__gap2",
+                        "type": "uint96"
+                    },
+                    {
+                        "internalType": "contract ITransferHookReceiver",
+                        "name": "transferHook",
+                        "type": "address"
+                    },
+                    {
+                        "internalType": "uint96",
+                        "name": "__gap3",
+                        "type": "uint96"
+                    }
+                ],
                 "indexed": false,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
+                "internalType": "struct IZoraCreator1155TypesV1.ContractConfig",
+                "name": "newConfig",
+                "type": "tuple"
             }
         ],
-        "name": "FundsReceived",
+        "name": "ConfigUpdated",
         "type": "event"
     },
     {
@@ -393,104 +581,23 @@ export const abi = [
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "newAddress",
+                "name": "updater",
                 "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "changedBy",
-                "type": "address"
-            }
-        ],
-        "name": "FundsRecipientChanged",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "withdrawnBy",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "withdrawnTo",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "amount",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "address",
-                "name": "feeRecipient",
-                "type": "address"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "feeAmount",
-                "type": "uint256"
-            }
-        ],
-        "name": "FundsWithdrawn",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "_tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "MetadataUpdate",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "sender",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "tokenContract",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            },
-            {
-                "indexed": false,
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
             },
             {
                 "indexed": false,
                 "internalType": "string",
-                "name": "comment",
+                "name": "uri",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "name",
                 "type": "string"
             }
         ],
-        "name": "MintComment",
+        "name": "ContractMetadataUpdated",
         "type": "event"
     },
     {
@@ -498,94 +605,75 @@ export const abi = [
         "inputs": [
             {
                 "indexed": false,
-                "internalType": "uint256",
-                "name": "mintFeeAmount",
-                "type": "uint256"
+                "internalType": "contract IRenderer1155",
+                "name": "renderer",
+                "type": "address"
+            }
+        ],
+        "name": "ContractRendererUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
+                "internalType": "bytes32",
+                "name": "structHash",
+                "type": "bytes32"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "domainName",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "version",
+                "type": "string"
             },
             {
                 "indexed": false,
                 "internalType": "address",
-                "name": "mintFeeRecipient",
+                "name": "creator",
                 "type": "address"
             },
             {
                 "indexed": false,
-                "internalType": "bool",
-                "name": "success",
-                "type": "bool"
+                "internalType": "bytes",
+                "name": "signature",
+                "type": "bytes"
             }
         ],
-        "name": "MintFeePayout",
+        "name": "CreatorAttribution",
         "type": "event"
     },
     {
         "anonymous": false,
         "inputs": [
             {
-                "indexed": true,
+                "indexed": false,
+                "internalType": "uint8",
+                "name": "version",
+                "type": "uint8"
+            }
+        ],
+        "name": "Initialized",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": false,
                 "internalType": "address",
-                "name": "sender",
+                "name": "lastOwner",
                 "type": "address"
             },
             {
                 "indexed": false,
-                "internalType": "uint256",
-                "name": "numberOfMints",
-                "type": "uint256"
-            }
-        ],
-        "name": "OpenMintFinalized",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "previousOwner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "potentialNewOwner",
-                "type": "address"
-            }
-        ],
-        "name": "OwnerCanceled",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "previousOwner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "potentialNewOwner",
-                "type": "address"
-            }
-        ],
-        "name": "OwnerPending",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "previousOwner",
-                "type": "address"
-            },
-            {
-                "indexed": true,
                 "internalType": "address",
                 "name": "newOwner",
                 "type": "address"
@@ -599,105 +687,92 @@ export const abi = [
         "inputs": [
             {
                 "indexed": true,
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
-            },
-            {
-                "indexed": true,
-                "internalType": "bytes32",
-                "name": "previousAdminRole",
-                "type": "bytes32"
-            },
-            {
-                "indexed": true,
-                "internalType": "bytes32",
-                "name": "newAdminRole",
-                "type": "bytes32"
-            }
-        ],
-        "name": "RoleAdminChanged",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
-            },
-            {
-                "indexed": true,
                 "internalType": "address",
                 "name": "sender",
                 "type": "address"
-            }
-        ],
-        "name": "RoleGranted",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
             },
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "account",
-                "type": "address"
-            },
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "sender",
-                "type": "address"
-            }
-        ],
-        "name": "RoleRevoked",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
-            {
-                "indexed": true,
-                "internalType": "address",
-                "name": "to",
+                "name": "minter",
                 "type": "address"
             },
             {
                 "indexed": true,
                 "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            },
-            {
-                "indexed": true,
-                "internalType": "uint256",
-                "name": "pricePerToken",
+                "name": "tokenId",
                 "type": "uint256"
             },
             {
                 "indexed": false,
                 "internalType": "uint256",
-                "name": "firstPurchasedTokenId",
+                "name": "quantity",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
                 "type": "uint256"
             }
         ],
-        "name": "Sale",
+        "name": "Purchased",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "renderer",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            }
+        ],
+        "name": "RendererUpdated",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            },
+            {
+                "indexed": false,
+                "internalType": "string",
+                "name": "newURI",
+                "type": "string"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "maxSupply",
+                "type": "uint256"
+            }
+        ],
+        "name": "SetupNewToken",
         "type": "event"
     },
     {
@@ -706,16 +781,9 @@ export const abi = [
             {
                 "indexed": true,
                 "internalType": "address",
-                "name": "changedBy",
+                "name": "operator",
                 "type": "address"
-            }
-        ],
-        "name": "SalesConfigChanged",
-        "type": "event"
-    },
-    {
-        "anonymous": false,
-        "inputs": [
+            },
             {
                 "indexed": true,
                 "internalType": "address",
@@ -729,13 +797,56 @@ export const abi = [
                 "type": "address"
             },
             {
+                "indexed": false,
+                "internalType": "uint256[]",
+                "name": "ids",
+                "type": "uint256[]"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256[]",
+                "name": "values",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "TransferBatch",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
                 "indexed": true,
+                "internalType": "address",
+                "name": "operator",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "to",
+                "type": "address"
+            },
+            {
+                "indexed": false,
                 "internalType": "uint256",
-                "name": "tokenId",
+                "name": "id",
+                "type": "uint256"
+            },
+            {
+                "indexed": false,
+                "internalType": "uint256",
+                "name": "value",
                 "type": "uint256"
             }
         ],
-        "name": "Transfer",
+        "name": "TransferSingle",
         "type": "event"
     },
     {
@@ -743,18 +854,127 @@ export const abi = [
         "inputs": [
             {
                 "indexed": false,
+                "internalType": "string",
+                "name": "value",
+                "type": "string"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
+            }
+        ],
+        "name": "URI",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": true,
                 "internalType": "address",
-                "name": "sender",
+                "name": "user",
                 "type": "address"
             },
             {
-                "indexed": false,
-                "internalType": "contract IMetadataRenderer",
-                "name": "renderer",
-                "type": "address"
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "permissions",
+                "type": "uint256"
             }
         ],
-        "name": "UpdatedMetadataRenderer",
+        "name": "UpdatedPermissions",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyMintSchedule",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyBPS",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "royaltyRecipient",
+                        "type": "address"
+                    }
+                ],
+                "indexed": false,
+                "internalType": "struct ICreatorRoyaltiesControl.RoyaltyConfiguration",
+                "name": "configuration",
+                "type": "tuple"
+            }
+        ],
+        "name": "UpdatedRoyalties",
+        "type": "event"
+    },
+    {
+        "anonymous": false,
+        "inputs": [
+            {
+                "indexed": true,
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "indexed": true,
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "components": [
+                    {
+                        "internalType": "string",
+                        "name": "uri",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "maxSupply",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "totalMinted",
+                        "type": "uint256"
+                    }
+                ],
+                "indexed": false,
+                "internalType": "struct IZoraCreator1155TypesV1.TokenData",
+                "name": "tokenData",
+                "type": "tuple"
+            }
+        ],
+        "name": "UpdatedToken",
         "type": "event"
     },
     {
@@ -772,12 +992,12 @@ export const abi = [
     },
     {
         "inputs": [],
-        "name": "DEFAULT_ADMIN_ROLE",
+        "name": "CONTRACT_BASE_ID",
         "outputs": [
             {
-                "internalType": "bytes32",
+                "internalType": "uint256",
                 "name": "",
-                "type": "bytes32"
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -785,12 +1005,12 @@ export const abi = [
     },
     {
         "inputs": [],
-        "name": "MINTER_ROLE",
+        "name": "PERMISSION_BIT_ADMIN",
         "outputs": [
             {
-                "internalType": "bytes32",
+                "internalType": "uint256",
                 "name": "",
-                "type": "bytes32"
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
@@ -798,15 +1018,77 @@ export const abi = [
     },
     {
         "inputs": [],
-        "name": "SALES_MANAGER_ROLE",
+        "name": "PERMISSION_BIT_FUNDS_MANAGER",
         "outputs": [
             {
-                "internalType": "bytes32",
+                "internalType": "uint256",
                 "name": "",
-                "type": "bytes32"
+                "type": "uint256"
             }
         ],
         "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "PERMISSION_BIT_METADATA",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "PERMISSION_BIT_MINTER",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "PERMISSION_BIT_SALES",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "user",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "permissionBits",
+                "type": "uint256"
+            }
+        ],
+        "name": "addPermission",
+        "outputs": [],
+        "stateMutability": "nonpayable",
         "type": "function"
     },
     {
@@ -818,54 +1100,21 @@ export const abi = [
             },
             {
                 "internalType": "uint256",
-                "name": "quantity",
+                "name": "tokenId",
                 "type": "uint256"
-            }
-        ],
-        "name": "adminMint",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address[]",
-                "name": "recipients",
-                "type": "address[]"
-            }
-        ],
-        "name": "adminMintAirdrop",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
             },
             {
                 "internalType": "uint256",
-                "name": "tokenId",
+                "name": "quantity",
                 "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
             }
         ],
-        "name": "approve",
+        "name": "adminMint",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -874,8 +1123,54 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "owner",
+                "name": "recipient",
                 "type": "address"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "tokenIds",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "quantities",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
+            }
+        ],
+        "name": "adminMintBatch",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "lastTokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "assumeLastTokenIdMatches",
+        "outputs": [],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "account",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "id",
+                "type": "uint256"
             }
         ],
         "name": "balanceOf",
@@ -892,12 +1187,46 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
+                "internalType": "address[]",
+                "name": "accounts",
+                "type": "address[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "ids",
+                "type": "uint256[]"
             }
         ],
-        "name": "burn",
+        "name": "balanceOfBatch",
+        "outputs": [
+            {
+                "internalType": "uint256[]",
+                "name": "batchBalances",
+                "type": "uint256[]"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "address",
+                "name": "from",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "tokenIds",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "amounts",
+                "type": "uint256[]"
+            }
+        ],
+        "name": "burnBatch",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -905,19 +1234,41 @@ export const abi = [
     {
         "inputs": [
             {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
                 "internalType": "bytes",
                 "name": "data",
                 "type": "bytes"
             }
         ],
-        "name": "callMetadataRenderer",
-        "outputs": [
+        "name": "callRenderer",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "contract IMinter1155",
+                "name": "salesConfig",
+                "type": "address"
+            },
             {
                 "internalType": "bytes",
-                "name": "",
+                "name": "data",
                 "type": "bytes"
             }
         ],
+        "name": "callSale",
+        "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
     },
@@ -1037,24 +1388,34 @@ export const abi = [
         "name": "config",
         "outputs": [
             {
-                "internalType": "contract IMetadataRenderer",
-                "name": "metadataRenderer",
+                "internalType": "address",
+                "name": "owner",
                 "type": "address"
             },
             {
-                "internalType": "uint64",
-                "name": "editionSize",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint16",
-                "name": "royaltyBPS",
-                "type": "uint16"
+                "internalType": "uint96",
+                "name": "__gap1",
+                "type": "uint96"
             },
             {
                 "internalType": "address payable",
                 "name": "fundsRecipient",
                 "type": "address"
+            },
+            {
+                "internalType": "uint96",
+                "name": "__gap2",
+                "type": "uint96"
+            },
+            {
+                "internalType": "contract ITransferHookReceiver",
+                "name": "transferHook",
+                "type": "address"
+            },
+            {
+                "internalType": "uint96",
+                "name": "__gap3",
+                "type": "uint96"
             }
         ],
         "stateMutability": "view",
@@ -1078,17 +1439,23 @@ export const abi = [
         "name": "contractVersion",
         "outputs": [
             {
-                "internalType": "uint32",
+                "internalType": "string",
                 "name": "",
-                "type": "uint32"
+                "type": "string"
             }
         ],
-        "stateMutability": "view",
+        "stateMutability": "pure",
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "createReferral",
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "createReferrals",
         "outputs": [
             {
                 "internalType": "address",
@@ -1100,11 +1467,17 @@ export const abi = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "factoryUpgradeGate",
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "customRenderers",
         "outputs": [
             {
-                "internalType": "contract IFactoryUpgradeGate",
+                "internalType": "contract IRenderer1155",
                 "name": "",
                 "type": "address"
             }
@@ -1113,10 +1486,144 @@ export const abi = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "finalizeOpenEdition",
-        "outputs": [],
+        "inputs": [
+            {
+                "components": [
+                    {
+                        "components": [
+                            {
+                                "internalType": "string",
+                                "name": "tokenURI",
+                                "type": "string"
+                            },
+                            {
+                                "internalType": "uint256",
+                                "name": "maxSupply",
+                                "type": "uint256"
+                            },
+                            {
+                                "internalType": "uint64",
+                                "name": "maxTokensPerAddress",
+                                "type": "uint64"
+                            },
+                            {
+                                "internalType": "uint96",
+                                "name": "pricePerToken",
+                                "type": "uint96"
+                            },
+                            {
+                                "internalType": "uint64",
+                                "name": "mintStart",
+                                "type": "uint64"
+                            },
+                            {
+                                "internalType": "uint64",
+                                "name": "mintDuration",
+                                "type": "uint64"
+                            },
+                            {
+                                "internalType": "uint32",
+                                "name": "royaltyMintSchedule",
+                                "type": "uint32"
+                            },
+                            {
+                                "internalType": "uint32",
+                                "name": "royaltyBPS",
+                                "type": "uint32"
+                            },
+                            {
+                                "internalType": "address",
+                                "name": "royaltyRecipient",
+                                "type": "address"
+                            },
+                            {
+                                "internalType": "address",
+                                "name": "fixedPriceMinter",
+                                "type": "address"
+                            }
+                        ],
+                        "internalType": "struct TokenCreationConfig",
+                        "name": "tokenConfig",
+                        "type": "tuple"
+                    },
+                    {
+                        "internalType": "uint32",
+                        "name": "uid",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "uint32",
+                        "name": "version",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "bool",
+                        "name": "deleted",
+                        "type": "bool"
+                    }
+                ],
+                "internalType": "struct PremintConfig",
+                "name": "premintConfig",
+                "type": "tuple"
+            },
+            {
+                "internalType": "bytes",
+                "name": "signature",
+                "type": "bytes"
+            },
+            {
+                "internalType": "address",
+                "name": "sender",
+                "type": "address"
+            }
+        ],
+        "name": "delegateSetupNewToken",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "newTokenId",
+                "type": "uint256"
+            }
+        ],
         "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint32",
+                "name": "",
+                "type": "uint32"
+            }
+        ],
+        "name": "delegatedTokenId",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "name": "firstMinters",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -1127,7 +1634,7 @@ export const abi = [
                 "type": "uint256"
             }
         ],
-        "name": "getApproved",
+        "name": "getCreatorRewardRecipient",
         "outputs": [
             {
                 "internalType": "address",
@@ -1141,17 +1648,17 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             }
         ],
-        "name": "getRoleAdmin",
+        "name": "getCustomRenderer",
         "outputs": [
             {
-                "internalType": "bytes32",
-                "name": "",
-                "type": "bytes32"
+                "internalType": "contract IRenderer1155",
+                "name": "customRenderer",
+                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -1160,40 +1667,83 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
-            },
-            {
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             }
         ],
-        "name": "grantRole",
-        "outputs": [],
-        "stateMutability": "nonpayable",
+        "name": "getRoyalties",
+        "outputs": [
+            {
+                "components": [
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyMintSchedule",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyBPS",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "royaltyRecipient",
+                        "type": "address"
+                    }
+                ],
+                "internalType": "struct ICreatorRoyaltiesControl.RoyaltyConfiguration",
+                "name": "",
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
         "type": "function"
     },
     {
         "inputs": [
             {
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
-            },
-            {
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             }
         ],
-        "name": "hasRole",
+        "name": "getTokenInfo",
         "outputs": [
             {
-                "internalType": "bool",
+                "components": [
+                    {
+                        "internalType": "string",
+                        "name": "uri",
+                        "type": "string"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "maxSupply",
+                        "type": "uint256"
+                    },
+                    {
+                        "internalType": "uint256",
+                        "name": "totalMinted",
+                        "type": "uint256"
+                    }
+                ],
+                "internalType": "struct IZoraCreator1155TypesV1.TokenData",
                 "name": "",
-                "type": "bool"
+                "type": "tuple"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "implementation",
+        "outputs": [
+            {
+                "internalType": "address",
+                "name": "",
+                "type": "address"
             }
         ],
         "stateMutability": "view",
@@ -1203,53 +1753,45 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "string",
-                "name": "_contractName",
+                "name": "contractName",
                 "type": "string"
             },
             {
                 "internalType": "string",
-                "name": "_contractSymbol",
+                "name": "newContractURI",
                 "type": "string"
             },
             {
-                "internalType": "address",
-                "name": "_initialOwner",
-                "type": "address"
+                "components": [
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyMintSchedule",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyBPS",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "royaltyRecipient",
+                        "type": "address"
+                    }
+                ],
+                "internalType": "struct ICreatorRoyaltiesControl.RoyaltyConfiguration",
+                "name": "defaultRoyaltyConfiguration",
+                "type": "tuple"
             },
             {
                 "internalType": "address payable",
-                "name": "_fundsRecipient",
+                "name": "defaultAdmin",
                 "type": "address"
-            },
-            {
-                "internalType": "uint64",
-                "name": "_editionSize",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint16",
-                "name": "_royaltyBPS",
-                "type": "uint16"
             },
             {
                 "internalType": "bytes[]",
-                "name": "_setupCalls",
+                "name": "setupActions",
                 "type": "bytes[]"
-            },
-            {
-                "internalType": "contract IMetadataRenderer",
-                "name": "_metadataRenderer",
-                "type": "address"
-            },
-            {
-                "internalType": "bytes",
-                "name": "_metadataRendererInit",
-                "type": "bytes"
-            },
-            {
-                "internalType": "address",
-                "name": "_createReferral",
-                "type": "address"
             }
         ],
         "name": "initialize",
@@ -1263,9 +1805,19 @@ export const abi = [
                 "internalType": "address",
                 "name": "user",
                 "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "role",
+                "type": "uint256"
             }
         ],
-        "name": "isAdmin",
+        "name": "isAdminOrRole",
         "outputs": [
             {
                 "internalType": "bool",
@@ -1280,7 +1832,7 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "address",
-                "name": "nftOwner",
+                "name": "account",
                 "type": "address"
             },
             {
@@ -1303,35 +1855,15 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "bool",
-                "name": "enable",
-                "type": "bool"
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
             }
         ],
-        "name": "manageMarketFilterDAOSubscription",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "marketFilterDAOAddress",
+        "name": "metadataRendererContract",
         "outputs": [
             {
                 "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "metadataRenderer",
-        "outputs": [
-            {
-                "internalType": "contract IMetadataRenderer",
                 "name": "",
                 "type": "address"
             }
@@ -1342,9 +1874,14 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "address",
-                "name": "recipient",
+                "internalType": "contract IMinter1155",
+                "name": "minter",
                 "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             },
             {
                 "internalType": "uint256",
@@ -1352,9 +1889,50 @@ export const abi = [
                 "type": "uint256"
             },
             {
-                "internalType": "string",
-                "name": "comment",
-                "type": "string"
+                "internalType": "bytes",
+                "name": "minterArguments",
+                "type": "bytes"
+            }
+        ],
+        "name": "mint",
+        "outputs": [],
+        "stateMutability": "payable",
+        "type": "function"
+    },
+    {
+        "inputs": [],
+        "name": "mintFee",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "pure",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract IMinter1155",
+                "name": "minter",
+                "type": "address"
+            },
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "quantity",
+                "type": "uint256"
+            },
+            {
+                "internalType": "bytes",
+                "name": "minterArguments",
+                "type": "bytes"
             },
             {
                 "internalType": "address",
@@ -1363,50 +1941,8 @@ export const abi = [
             }
         ],
         "name": "mintWithRewards",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
+        "outputs": [],
         "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "minter",
-                "type": "address"
-            }
-        ],
-        "name": "mintedPerAddress",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "uint256",
-                        "name": "totalMints",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "presaleMints",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "publicMints",
-                        "type": "uint256"
-                    }
-                ],
-                "internalType": "struct IERC721Drop.AddressMintDetails",
-                "name": "",
-                "type": "tuple"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -1443,6 +1979,19 @@ export const abi = [
     },
     {
         "inputs": [],
+        "name": "nextTokenId",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [],
         "name": "owner",
         "outputs": [
             {
@@ -1458,30 +2007,16 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "tokenId",
+                "name": "",
                 "type": "uint256"
-            }
-        ],
-        "name": "ownerOf",
-        "outputs": [
+            },
             {
                 "internalType": "address",
                 "name": "",
                 "type": "address"
             }
         ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "name": "presaleMintsByAddress",
+        "name": "permissions",
         "outputs": [
             {
                 "internalType": "uint256",
@@ -1509,223 +2044,21 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "uint256",
-                "name": "quantity",
+                "name": "tokenId",
                 "type": "uint256"
-            }
-        ],
-        "name": "purchase",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "maxQuantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "pricePerToken",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes32[]",
-                "name": "merkleProof",
-                "type": "bytes32[]"
-            }
-        ],
-        "name": "purchasePresale",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "maxQuantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "pricePerToken",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes32[]",
-                "name": "merkleProof",
-                "type": "bytes32[]"
-            },
-            {
-                "internalType": "string",
-                "name": "comment",
-                "type": "string"
-            }
-        ],
-        "name": "purchasePresaleWithComment",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "maxQuantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "uint256",
-                "name": "pricePerToken",
-                "type": "uint256"
-            },
-            {
-                "internalType": "bytes32[]",
-                "name": "merkleProof",
-                "type": "bytes32[]"
-            },
-            {
-                "internalType": "string",
-                "name": "comment",
-                "type": "string"
             },
             {
                 "internalType": "address",
-                "name": "mintReferral",
-                "type": "address"
-            }
-        ],
-        "name": "purchasePresaleWithRewards",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string",
-                "name": "comment",
-                "type": "string"
-            }
-        ],
-        "name": "purchaseWithComment",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "recipient",
+                "name": "user",
                 "type": "address"
             },
             {
                 "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            },
-            {
-                "internalType": "string",
-                "name": "comment",
-                "type": "string"
-            }
-        ],
-        "name": "purchaseWithRecipient",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
+                "name": "permissionBits",
                 "type": "uint256"
             }
         ],
-        "stateMutability": "payable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
-            },
-            {
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
-            }
-        ],
-        "name": "renounceRole",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "bytes32",
-                "name": "role",
-                "type": "bytes32"
-            },
-            {
-                "internalType": "address",
-                "name": "account",
-                "type": "address"
-            }
-        ],
-        "name": "revokeRole",
+        "name": "removePermission",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1736,10 +2069,39 @@ export const abi = [
                 "internalType": "uint256",
                 "name": "",
                 "type": "uint256"
+            }
+        ],
+        "name": "royalties",
+        "outputs": [
+            {
+                "internalType": "uint32",
+                "name": "royaltyMintSchedule",
+                "type": "uint32"
+            },
+            {
+                "internalType": "uint32",
+                "name": "royaltyBPS",
+                "type": "uint32"
+            },
+            {
+                "internalType": "address",
+                "name": "royaltyRecipient",
+                "type": "address"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             },
             {
                 "internalType": "uint256",
-                "name": "_salePrice",
+                "name": "salePrice",
                 "type": "uint256"
             }
         ],
@@ -1760,19 +2122,6 @@ export const abi = [
         "type": "function"
     },
     {
-        "inputs": [],
-        "name": "royaltyMintSchedule",
-        "outputs": [
-            {
-                "internalType": "uint32",
-                "name": "",
-                "type": "uint32"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
         "inputs": [
             {
                 "internalType": "address",
@@ -1785,12 +2134,22 @@ export const abi = [
                 "type": "address"
             },
             {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
+                "internalType": "uint256[]",
+                "name": "ids",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "uint256[]",
+                "name": "amounts",
+                "type": "uint256[]"
+            },
+            {
+                "internalType": "bytes",
+                "name": "data",
+                "type": "bytes"
             }
         ],
-        "name": "safeTransferFrom",
+        "name": "safeBatchTransferFrom",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -1809,131 +2168,23 @@ export const abi = [
             },
             {
                 "internalType": "uint256",
-                "name": "tokenId",
+                "name": "id",
+                "type": "uint256"
+            },
+            {
+                "internalType": "uint256",
+                "name": "amount",
                 "type": "uint256"
             },
             {
                 "internalType": "bytes",
-                "name": "_data",
+                "name": "data",
                 "type": "bytes"
             }
         ],
         "name": "safeTransferFrom",
         "outputs": [],
         "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "saleDetails",
-        "outputs": [
-            {
-                "components": [
-                    {
-                        "internalType": "bool",
-                        "name": "publicSaleActive",
-                        "type": "bool"
-                    },
-                    {
-                        "internalType": "bool",
-                        "name": "presaleActive",
-                        "type": "bool"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "publicSalePrice",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint64",
-                        "name": "publicSaleStart",
-                        "type": "uint64"
-                    },
-                    {
-                        "internalType": "uint64",
-                        "name": "publicSaleEnd",
-                        "type": "uint64"
-                    },
-                    {
-                        "internalType": "uint64",
-                        "name": "presaleStart",
-                        "type": "uint64"
-                    },
-                    {
-                        "internalType": "uint64",
-                        "name": "presaleEnd",
-                        "type": "uint64"
-                    },
-                    {
-                        "internalType": "bytes32",
-                        "name": "presaleMerkleRoot",
-                        "type": "bytes32"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "maxSalePurchasePerAddress",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "totalMinted",
-                        "type": "uint256"
-                    },
-                    {
-                        "internalType": "uint256",
-                        "name": "maxSupply",
-                        "type": "uint256"
-                    }
-                ],
-                "internalType": "struct IERC721Drop.SaleDetails",
-                "name": "",
-                "type": "tuple"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "salesConfig",
-        "outputs": [
-            {
-                "internalType": "uint104",
-                "name": "publicSalePrice",
-                "type": "uint104"
-            },
-            {
-                "internalType": "uint32",
-                "name": "maxSalePurchasePerAddress",
-                "type": "uint32"
-            },
-            {
-                "internalType": "uint64",
-                "name": "publicSaleStart",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint64",
-                "name": "publicSaleEnd",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint64",
-                "name": "presaleStart",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint64",
-                "name": "presaleEnd",
-                "type": "uint64"
-            },
-            {
-                "internalType": "bytes32",
-                "name": "presaleMerkleRoot",
-                "type": "bytes32"
-            }
-        ],
-        "stateMutability": "view",
         "type": "function"
     },
     {
@@ -1958,29 +2209,11 @@ export const abi = [
         "inputs": [
             {
                 "internalType": "address payable",
-                "name": "newRecipientAddress",
+                "name": "fundsRecipient",
                 "type": "address"
             }
         ],
         "name": "setFundsRecipient",
-        "outputs": [],
-        "stateMutability": "nonpayable",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "contract IMetadataRenderer",
-                "name": "newRenderer",
-                "type": "address"
-            },
-            {
-                "internalType": "bytes",
-                "name": "setupRenderer",
-                "type": "bytes"
-            }
-        ],
-        "name": "setMetadataRenderer",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -2001,43 +2234,84 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "uint104",
-                "name": "publicSalePrice",
-                "type": "uint104"
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
             },
             {
-                "internalType": "uint32",
-                "name": "maxSalePurchasePerAddress",
-                "type": "uint32"
-            },
-            {
-                "internalType": "uint64",
-                "name": "publicSaleStart",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint64",
-                "name": "publicSaleEnd",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint64",
-                "name": "presaleStart",
-                "type": "uint64"
-            },
-            {
-                "internalType": "uint64",
-                "name": "presaleEnd",
-                "type": "uint64"
-            },
-            {
-                "internalType": "bytes32",
-                "name": "presaleMerkleRoot",
-                "type": "bytes32"
+                "internalType": "contract IRenderer1155",
+                "name": "renderer",
+                "type": "address"
             }
         ],
-        "name": "setSaleConfiguration",
+        "name": "setTokenMetadataRenderer",
         "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "contract ITransferHookReceiver",
+                "name": "transferHook",
+                "type": "address"
+            }
+        ],
+        "name": "setTransferHook",
+        "outputs": [],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "newURI",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "maxSupply",
+                "type": "uint256"
+            }
+        ],
+        "name": "setupNewToken",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
+        "stateMutability": "nonpayable",
+        "type": "function"
+    },
+    {
+        "inputs": [
+            {
+                "internalType": "string",
+                "name": "newURI",
+                "type": "string"
+            },
+            {
+                "internalType": "uint256",
+                "name": "maxSupply",
+                "type": "uint256"
+            },
+            {
+                "internalType": "address",
+                "name": "createReferral",
+                "type": "address"
+            }
+        ],
+        "name": "setupNewTokenWithCreateReferral",
+        "outputs": [
+            {
+                "internalType": "uint256",
+                "name": "",
+                "type": "uint256"
+            }
+        ],
         "stateMutability": "nonpayable",
         "type": "function"
     },
@@ -2070,66 +2344,34 @@ export const abi = [
                 "type": "string"
             }
         ],
-        "stateMutability": "view",
+        "stateMutability": "pure",
         "type": "function"
     },
     {
         "inputs": [
             {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "tokenURI",
-        "outputs": [
+                "internalType": "string",
+                "name": "_newURI",
+                "type": "string"
+            },
             {
                 "internalType": "string",
-                "name": "",
+                "name": "_newName",
                 "type": "string"
             }
         ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "totalSupply",
-        "outputs": [
-            {
-                "internalType": "uint256",
-                "name": "",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "address",
-                "name": "from",
-                "type": "address"
-            },
-            {
-                "internalType": "address",
-                "name": "to",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "tokenId",
-                "type": "uint256"
-            }
-        ],
-        "name": "transferFrom",
+        "name": "updateContractMetadata",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
         "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
             {
                 "internalType": "address",
                 "name": "recipient",
@@ -2144,31 +2386,52 @@ export const abi = [
     {
         "inputs": [
             {
-                "internalType": "bytes",
-                "name": "args",
-                "type": "bytes"
-            }
-        ],
-        "name": "updateMarketFilterSettings",
-        "outputs": [
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
             {
-                "internalType": "bytes",
-                "name": "",
-                "type": "bytes"
+                "components": [
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyMintSchedule",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "uint32",
+                        "name": "royaltyBPS",
+                        "type": "uint32"
+                    },
+                    {
+                        "internalType": "address",
+                        "name": "royaltyRecipient",
+                        "type": "address"
+                    }
+                ],
+                "internalType": "struct ICreatorRoyaltiesControl.RoyaltyConfiguration",
+                "name": "newConfiguration",
+                "type": "tuple"
             }
         ],
+        "name": "updateRoyaltiesForToken",
+        "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
     },
     {
         "inputs": [
             {
-                "internalType": "uint32",
-                "name": "newSchedule",
-                "type": "uint32"
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            },
+            {
+                "internalType": "string",
+                "name": "_newURI",
+                "type": "string"
             }
         ],
-        "name": "updateRoyaltyMintSchedule",
+        "name": "updateTokenURI",
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
@@ -2205,6 +2468,25 @@ export const abi = [
         "type": "function"
     },
     {
+        "inputs": [
+            {
+                "internalType": "uint256",
+                "name": "tokenId",
+                "type": "uint256"
+            }
+        ],
+        "name": "uri",
+        "outputs": [
+            {
+                "internalType": "string",
+                "name": "",
+                "type": "string"
+            }
+        ],
+        "stateMutability": "view",
+        "type": "function"
+    },
+    {
         "inputs": [],
         "name": "withdraw",
         "outputs": [],
@@ -2228,47 +2510,5 @@ export const abi = [
         "outputs": [],
         "stateMutability": "nonpayable",
         "type": "function"
-    },
-    {
-        "inputs": [],
-        "name": "zoraERC721TransferHelper",
-        "outputs": [
-            {
-                "internalType": "address",
-                "name": "",
-                "type": "address"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "inputs": [
-            {
-                "internalType": "uint256",
-                "name": "quantity",
-                "type": "uint256"
-            }
-        ],
-        "name": "zoraFeeForAmount",
-        "outputs": [
-            {
-                "internalType": "address payable",
-                "name": "recipient",
-                "type": "address"
-            },
-            {
-                "internalType": "uint256",
-                "name": "fee",
-                "type": "uint256"
-            }
-        ],
-        "stateMutability": "view",
-        "type": "function"
-    },
-    {
-        "stateMutability": "payable",
-        "type": "receive"
     }
-    
 ] as const;
