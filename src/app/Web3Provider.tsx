@@ -9,7 +9,7 @@ import {
   darkTheme
 } from "@rainbow-me/rainbowkit";
 import { configureChains, createConfig, WagmiConfig } from "wagmi";
-import { zora } from "wagmi/chains";
+import { zoraTestnet } from "wagmi/chains";
 import { alchemyProvider } from "wagmi/providers/alchemy";
 import { publicProvider } from "wagmi/providers/public";
 import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
@@ -17,13 +17,13 @@ import { jsonRpcProvider } from 'wagmi/providers/jsonRpc';
 
 const PROJECT_ID = process.env.NEXT_PUBLIC_WALLETCONNECT_PROJECT_ID as string;
 
-
+//https://rpc.zora.energy/
 const { chains, publicClient } = configureChains(
-  [zora],
+  [zoraTestnet],
   [
     jsonRpcProvider({
       rpc: (chain) => ({
-        http: `https://rpc.zora.energy/`,
+        http: `https://testnet.rpc.zora.co/`,
       }),
     }),
     publicProvider()
