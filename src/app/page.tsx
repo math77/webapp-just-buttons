@@ -13,7 +13,7 @@ import {
   usePrepareContractWrite,
 } from "wagmi";
 
-import { parseEther } from "viem";
+import { parseEther, stringToBytes } from "viem";
 
 
 import Header from "@/components/Header";
@@ -41,7 +41,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? [contractAddress as Address, BigInt(1), BigInt(1), mintReferral] : ["" as Address, BigInt(1), BigInt(1), mintReferral],
+    args: contractAddress ? [contractAddress as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
