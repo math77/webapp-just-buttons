@@ -41,7 +41,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? [contractAddress, BigInt(1), BigInt(1), mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
+    args: contractAddress ? [contractAddress as Address, BigInt(1), BigInt(1), mintReferral] : ["" as Address, BigInt(1), "", mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
