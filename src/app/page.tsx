@@ -42,7 +42,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? [contractAddress as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
+    args: contractAddress ? ["0xd3165b63d4a8d814669ab36767defcb8363a5f19" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
