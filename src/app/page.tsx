@@ -158,7 +158,7 @@ export default function Home() {
         </div>
       </Modal>
     );
-x
+  }
 
   return (
     <main className="h-screen bg-black">
