@@ -42,7 +42,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? ["0x04E2516A2c207E84a1839755675dfd8eF6302F0a" as Address, BigInt(12), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
+    args: contractAddress ? ["0x04E2516A2c207E84a1839755675dfd8eF6302F0a" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
@@ -165,7 +165,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!+!
+          Choose a button and mint a "free" random NFT on the Zora Network!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
