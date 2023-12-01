@@ -37,10 +37,6 @@ export default function Home() {
 
   const buttonValid = clickedButtonId > -1;
 
-  if (!userAddress) {
-    throw new Error("No connected wallet address"); // TODO better handling if no connected wallet
-  }
-
   const mintTokenId = BigInt(1);
   const mintQuantity = BigInt(1);
   const encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
