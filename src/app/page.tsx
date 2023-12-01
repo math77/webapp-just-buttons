@@ -13,7 +13,7 @@ import {
   usePrepareContractWrite,
 } from "wagmi";
 
-import { parseEther, stringToBytes } from "viem";
+import { parseEther, stringToBytes, encodeAbiParameters, parseAbiParameters } from "viem";
 
 
 import Header from "@/components/Header";
@@ -22,7 +22,9 @@ import Pending from "@/components/Pending";
 import { CHAIN_ID, abi } from "../contracts_stuff";
 
 
+const saleStrategyAddress = "0x04E2516A2c207E84a1839755675dfd8eF6302F0a" as Address; // For chain 999
 const mintReferral = "0x5ec02bFe7cef41c80ACEba81B1e9B012Bdd3c15A" as Address;
+
 
 export default function Home() {
 
@@ -31,10 +33,19 @@ export default function Home() {
   const [randAddresses, setRandAddresses] = useState<Address[]>([]);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
 
-  const { address, isConnected } = useAccount();
-
+  const { address: userAddress, isConnected } = useAccount();
 
   const buttonValid = clickedButtonId > -1;
+
+  if (!userAddress) {
+    throw new Error("No connected wallet address"); // TODO better handling if no connected wallet
+  }
+
+  const mintTokenId = BigInt(1);
+  const mintQuantity = BigInt(1);
+  const encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
+
+  const args = [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] as const;
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
     /*address: contractAddress as Address,*/
@@ -42,7 +53,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? ["0x04E2516A2c207E84a1839755675dfd8eF6302F0a" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral] : ["" as Address, BigInt(1), BigInt(1), `0x${Buffer.from(stringToBytes("")).toString('hex')}`, mintReferral],
+    args,
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
@@ -165,7 +176,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
