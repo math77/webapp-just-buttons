@@ -40,13 +40,13 @@ export default function Home() {
   const mintTokenId = BigInt(1);
   const mintQuantity = BigInt(1);
 
-  let encodedParams;
+  let encodedParams = encodeAbiParameters(parseAbiParameters('address'), ["" as Address]);
   if (userAddress) {
     encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
   }
   //const encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
 
-  const args = [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] as const;
+  //const args = [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] as const;
 
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
     /*address: contractAddress as Address,*/
@@ -54,7 +54,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args,
+    args: contractAddress ? [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] ? [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
