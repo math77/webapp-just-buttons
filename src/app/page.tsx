@@ -54,7 +54,7 @@ export default function Home() {
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
-    args: contractAddress ? [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] ? [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral],
+    args: contractAddress ? [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] : [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral],
     value: parseEther('0.000777'),
     enabled: buttonValid
   });
