@@ -44,9 +44,9 @@ export default function Home() {
   if (userAddress) {
     encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
   } else {
-    encodedParams = encodeAbiParameters(parseAbiParameters('address'), [mintReferral]);
+    encodedParams = encodeAbiParameters(parseAbiParameters('address'), [saleStrategyAddress]);
   }
-  
+
   //const encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
 
   //const args = [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] as const;
@@ -158,12 +158,12 @@ export default function Home() {
 
           {txMintSuccess && (
             <div>
-              <h1 className="text-2xl text-center text-white font-semibold mb-2">
+              <h1 className="text-2xl text-center text-black font-semibold mb-2">
                 You got...
               </h1>
               <a 
                 className="text-2xl text-center text-black font-semibold mb-2"
-                href={`https://testnet.zora.co/collect/zgor:${0xd3165b63d4a8d814669ab36767defcb8363a5f19}/1`}
+                href={`https://testnet.zora.co/collect/zgor:${"0xd3165b63d4a8d814669ab36767defcb8363a5f19"}/1`}
                 target="_blank"
               >
                 Click here
@@ -180,7 +180,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!!!!!!
+          Choose a button and mint a "free" random NFT on the Zora Network!!!
         </p>
       </div>
       <div className="flex justify-center items-center bg-black">
