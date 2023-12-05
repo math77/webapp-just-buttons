@@ -43,7 +43,10 @@ export default function Home() {
   let encodedParams;
   if (userAddress) {
     encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
+  } else {
+    encodedParams = encodeAbiParameters(parseAbiParameters('address'), [mintReferral]);
   }
+  
   //const encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
 
   //const args = [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] as const;
