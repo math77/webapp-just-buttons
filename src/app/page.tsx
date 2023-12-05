@@ -148,7 +148,7 @@ export default function Home() {
               </h1>
               <a 
                 className="text-2xl text-center text-black font-semibold mb-2"
-                href={`https://testnet.zora.co/collect/zgor:${"0xd3165b63d4a8d814669ab36767defcb8363a5f19"}/1`}
+                href={`https://zora.co/collect/zora:${contractAddress}/1`}
                 target="_blank"
               >
                 Click here
@@ -165,7 +165,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the ZORA Network!
+          Choose a button and mint a "free" random NFT on the ZORA Network!!!
         </p>
       </div>
       {!isConnected && (
@@ -196,7 +196,7 @@ export default function Home() {
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-green-600 shadow-green-600/50 hover:bg-green-700 text-white font-bold`}
             onClick={() => setButton(2)}
           >
-            Mint this stuff you mfers, mint
+            Mint this stuff you mfer, mint
           </button>
         </div>
 

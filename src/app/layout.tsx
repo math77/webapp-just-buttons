@@ -6,8 +6,8 @@ import Web3Provider from "./Web3Provider";
 const inter = Inter({ subsets: ['latin'] })
 
 export const metadata = {
-  title: 'Just Buttons',
-  description: 'Have a fun and give me a new laptop',
+  title: 'Lucky Buttons',
+  description: 'Feeling lucky today?',
 }
 
 export default function RootLayout({
