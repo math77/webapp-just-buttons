@@ -98,6 +98,9 @@ export default function Home() {
     setClickedButtonId(button-1);
     setContractAddress(randAddresses[button-1]);
     setIsModalOpen(true);
+
+    console.log("BUTTON ADDRESS");
+    console.log(randAddresses[button-1]);
   };
 
   const closeModal = () => {
