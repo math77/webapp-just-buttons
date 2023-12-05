@@ -46,13 +46,8 @@ export default function Home() {
   } else {
     encodedParams = encodeAbiParameters(parseAbiParameters('address'), [saleStrategyAddress]);
   }
-
-  //const encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
-
-  //const args = [saleStrategyAddress, mintTokenId, mintQuantity, encodedParams, mintReferral] as const;
-
+  
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
-    /*address: contractAddress as Address,*/
     address: "0xd3165b63d4a8d814669ab36767defcb8363a5f19" as Address,
     abi: abi,
     functionName: "mintWithRewards",
@@ -113,8 +108,6 @@ export default function Home() {
     setRandAddresses(shuffleArray());
   }, []);
 
-  //disabled={isPrepareError || !isConnected || txMintLoading}
-  //{!txMintLoading ? 'Create' : <Pending className="animate-spin" />}
 
   const renderSetSuccessorModal = () => {
     return (
@@ -129,14 +122,14 @@ export default function Home() {
           {!txMintSuccess && (
             <div className="grid justify-items-center">
               <h1 className="mb-6 text-4xl font-bold text-black">
-                Are you sure...?!
+                This button, are you sure...? really?!
               </h1>
               <button 
                 disabled={isPrepareError || !isConnected || txMintLoading}
                 className="cursor-pointer bg-gray-800 text-white font-semibold px-8 py-2 rounded-md mt-12 hover:bg-gray-900"
                 onClick={() => mint?.()}
               >
-                {!txMintLoading ? 'Mint' : <Pending className="animate-spin" />}
+                {!txMintLoading ? 'Yes, mint!' : <Pending className="animate-spin" />}
               </button>
               <button 
                 disabled={txMintLoading}
@@ -150,7 +143,7 @@ export default function Home() {
 
           {(isPrepareError || isError) && (
             <div>
-              <h1 className="text-black font-semibold text-2xl">
+              <h1 className="text-black font-semibold text-sm">
                 Error: {(prepareError || txMintError)?.message}
               </h1>
             </div>
