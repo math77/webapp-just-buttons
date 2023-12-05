@@ -98,9 +98,6 @@ export default function Home() {
     setClickedButtonId(button-1);
     setContractAddress(randAddresses[button-1]);
     setIsModalOpen(true);
-
-    console.log("BUTTON ADDRESS");
-    console.log(randAddresses[button-1]);
   };
 
   const closeModal = () => {
@@ -144,14 +141,6 @@ export default function Home() {
             </div>
           )}
 
-          {(isPrepareError || isError) && (
-            <div>
-              <h1 className="text-black font-semibold text-sm">
-                Error: {(prepareError || txMintError)?.message}
-              </h1>
-            </div>
-          )}
-
           {txMintSuccess && (
             <div>
               <h1 className="text-2xl text-center text-black font-semibold mb-2">
@@ -176,7 +165,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!
+          Choose a button and mint a "free" random NFT on the ZORA Network!
         </p>
       </div>
       {!isConnected && (
@@ -244,15 +233,6 @@ export default function Home() {
           </button>
         </div>
       </div>
-
-      {(isPrepareError || isError) && (
-        <div>
-          <h1 className="text-white font-semibold text-2xl">
-            Error: {(prepareError || txMintError)?.message}
-          </h1>
-        </div>
-      )}
-
       {renderSetSuccessorModal()}
     </main>
   )
