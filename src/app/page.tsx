@@ -40,7 +40,7 @@ export default function Home() {
   const mintTokenId = BigInt(1);
   const mintQuantity = BigInt(1);
 
-  let encodedParams = encodeAbiParameters(parseAbiParameters('address'), ["" as Address]);
+  let encodedParams;
   if (userAddress) {
     encodedParams = encodeAbiParameters(parseAbiParameters('address'), [userAddress]);
   }
