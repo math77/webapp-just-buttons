@@ -46,9 +46,9 @@ export default function Home() {
   } else {
     encodedParams = encodeAbiParameters(parseAbiParameters('address'), [saleStrategyAddress]);
   }
-  
+
   const { config: mintWriteConfig, error: prepareError, isError: isPrepareError } = usePrepareContractWrite({
-    address: "0xd3165b63d4a8d814669ab36767defcb8363a5f19" as Address,
+    address: contractAddress as Address,
     abi: abi,
     functionName: "mintWithRewards",
     chainId: CHAIN_ID,
@@ -76,9 +76,9 @@ export default function Home() {
   const shuffleArray = () => {
 
     let addresses = [
-      "0xd84d0ea1e675648fa608c36c2c2257dfc6078252" as Address,
+      "0x3411fe5f5dae4c3cc0efaea59ae7b4c2723d5c40" as Address,
       "0xaa8c4286883c46ffc3225500f4955f8edc0a351f" as Address,
-      "0xe42e32a9654d6df8f3415e7129f82bf5adbddd8c" as Address,
+      "0x124faf2a02ae157b6a871d34e36c14f5c1057ce1" as Address,
       "0xf645b4b3e29fd8b2b23d3439b7739fafd11329b8" as Address,
       "0x8dd4c6f2206568ae4e93d28ac8f7ec936b9e10e2" as Address
     ];
@@ -173,7 +173,7 @@ export default function Home() {
       <Header />
       <div className="flex justify-center items-center mt-4 mb-6">
         <p className="text-base text-center text-justify text-white w-[32rem]">
-          Choose a button and mint a "free" random NFT on the Zora Network!!!
+          Choose a button and mint a "free" random NFT on the Zora Network!
         </p>
       </div>
       {!isConnected && (
