@@ -184,7 +184,7 @@ export default function Home() {
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-red-600 shadow-red-600/50 hover:bg-red-700 text-white font-bold`}
             onClick={() => setButton(1)}
           >
-            &#128514;&#128514;&#128514; 
+            Maybe, I mint this one... 
           </button>
         </div>
         
