@@ -183,11 +183,19 @@ export default function Home() {
           Choose a button and mint a "free" random NFT on the Zora Network!!!
         </p>
       </div>
+      {!isConnected && (
+        <div className="flex justify-center items-center mt-4 mb-6">
+          <p className="text-base text-center italic font-bold text-justify text-white w-[32rem]">
+            Please, connect your wallet!
+          </p>
+        </div>
+      )}
       <div className="flex justify-center items-center bg-black">
 
         <div>
           <button 
             key={1}
+            disabled={!isConnected}
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-red-600 shadow-red-600/50 hover:bg-red-700 text-white font-bold`}
             onClick={() => setButton(1)}
           >
@@ -199,6 +207,7 @@ export default function Home() {
         <div>
           <button 
             key={2} 
+            disabled={!isConnected}
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-green-600 shadow-green-600/50 hover:bg-green-700 text-white font-bold`}
             onClick={() => setButton(2)}
           >
@@ -209,6 +218,7 @@ export default function Home() {
         <div>
           <button 
             key={3} 
+            disabled={!isConnected}
             className={`py-14 px-14 max-w-xs rounded hover:skew-y-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-yellow-600 shadow-yellow-600/50 hover:bg-yellow-700 text-white font-bold`}
             onClick={() => setButton(3)}
           >
@@ -219,6 +229,7 @@ export default function Home() {
         <div>
           <button 
             key={4} 
+            disabled={!isConnected}
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-blue-600 shadow-blue-600/50 hover:bg-blue-700 text-white font-bold`}
             onClick={() => setButton(4)}
           >
@@ -229,6 +240,7 @@ export default function Home() {
         <div>
           <button 
             key={5} 
+            disabled={!isConnected}
             className={`py-10 px-10 max-w-xs rounded hover:skew-x-12 shadow-lg mt-2 mb-2 mr-2 ml-2 bg-neutral-600 shadow-neutral-600/50 hover:bg-neutral-700 text-white font-bold`}
             onClick={() => setButton(5)}
           >
